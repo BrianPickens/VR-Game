@@ -1,0 +1,690 @@
+fileFormatVersion: 2
+guid: a73d688bd8b042c4f875d17785716279
+timeCreated: 1495358335
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bball
+    100002: Box
+    100004: Box1
+    100006: Box2
+    100008: //RootNode
+    100010: Hanger
+    100012: Hanger 1
+    100014: Hanger 10
+    100016: Hanger 11
+    100018: Hanger 12
+    100020: Hanger 13
+    100022: Hanger 14
+    100024: Hanger 15
+    100026: Hanger 16
+    100028: Hanger 17
+    100030: Hanger 18
+    100032: Hanger 19
+    100034: Hanger 2
+    100036: Hanger 20
+    100038: Hanger 21
+    100040: Hanger 22
+    100042: Hanger 23
+    100044: Hanger 24
+    100046: Hanger 25
+    100048: Hanger 26
+    100050: Hanger 27
+    100052: Hanger 28
+    100054: Hanger 29
+    100056: Hanger 3
+    100058: Hanger 30
+    100060: Hanger 31
+    100062: Hanger 32
+    100064: Hanger 33
+    100066: Hanger 34
+    100068: Hanger 4
+    100070: Hanger 5
+    100072: Hanger 6
+    100074: Hanger 7
+    100076: Hanger 8
+    100078: Hanger 9
+    100080: Hanger1
+    100082: Hanger10
+    100084: Hanger11
+    100086: Hanger12
+    100088: Hanger13
+    100090: Hanger14
+    100092: Hanger15
+    100094: Hanger16
+    100096: Hanger17
+    100098: Hanger18
+    100100: Hanger19
+    100102: Hanger2
+    100104: Hanger20
+    100106: Hanger21
+    100108: Hanger22
+    100110: Hanger23
+    100112: Hanger24
+    100114: Hanger25
+    100116: Hanger26
+    100118: Hanger27
+    100120: Hanger28
+    100122: Hanger3
+    100124: Hanger4
+    100126: Hanger5
+    100128: Hanger6
+    100130: Hanger7
+    100132: Hanger8
+    100134: Hanger9
+    100136: pPyramid1
+    100138: Safe
+    100140: Shirt
+    100142: Shirt 1
+    100144: Shirt 10
+    100146: Shirt 11
+    100148: Shirt 12
+    100150: Shirt 13
+    100152: Shirt 14
+    100154: Shirt 15
+    100156: Shirt 16
+    100158: Shirt 17
+    100160: Shirt 18
+    100162: Shirt 19
+    100164: Shirt 2
+    100166: Shirt 20
+    100168: Shirt 21
+    100170: Shirt 22
+    100172: Shirt 23
+    100174: Shirt 24
+    100176: Shirt 25
+    100178: Shirt 26
+    100180: Shirt 27
+    100182: Shirt 28
+    100184: Shirt 29
+    100186: Shirt 3
+    100188: Shirt 30
+    100190: Shirt 31
+    100192: Shirt 32
+    100194: Shirt 33
+    100196: Shirt 34
+    100198: Shirt 35
+    100200: Shirt 4
+    100202: Shirt 5
+    100204: Shirt 6
+    100206: Shirt 7
+    100208: Shirt 8
+    100210: Shirt 9
+    100212: Shirt1
+    100214: Shirt10
+    100216: Shirt11
+    100218: Shirt12
+    100220: Shirt13
+    100222: Shirt14
+    100224: Shirt15
+    100226: Shirt16
+    100228: Shirt17
+    100230: Shirt18
+    100232: Shirt19
+    100234: Shirt2
+    100236: Shirt20
+    100238: Shirt21
+    100240: Shirt22
+    100242: Shirt23
+    100244: Shirt24
+    100246: Shirt25
+    100248: Shirt26
+    100250: Shirt27
+    100252: Shirt28
+    100254: Shirt29
+    100256: Shirt3
+    100258: Shirt30
+    100260: Shirt31
+    100262: Shirt32
+    100264: Shirt33
+    100266: Shirt34
+    100268: Shirt4
+    100270: Shirt5
+    100272: Shirt6
+    100274: Shirt7
+    100276: Shirt8
+    100278: Shirt9
+    100280: Shirts_and_hanger
+    100282: Shoebox
+    100284: Shoebox1
+    100286: Shoebox2
+    100288: Shoebox3
+    400000: Bball
+    400002: Box
+    400004: Box1
+    400006: Box2
+    400008: //RootNode
+    400010: Hanger
+    400012: Hanger 1
+    400014: Hanger 10
+    400016: Hanger 11
+    400018: Hanger 12
+    400020: Hanger 13
+    400022: Hanger 14
+    400024: Hanger 15
+    400026: Hanger 16
+    400028: Hanger 17
+    400030: Hanger 18
+    400032: Hanger 19
+    400034: Hanger 2
+    400036: Hanger 20
+    400038: Hanger 21
+    400040: Hanger 22
+    400042: Hanger 23
+    400044: Hanger 24
+    400046: Hanger 25
+    400048: Hanger 26
+    400050: Hanger 27
+    400052: Hanger 28
+    400054: Hanger 29
+    400056: Hanger 3
+    400058: Hanger 30
+    400060: Hanger 31
+    400062: Hanger 32
+    400064: Hanger 33
+    400066: Hanger 34
+    400068: Hanger 4
+    400070: Hanger 5
+    400072: Hanger 6
+    400074: Hanger 7
+    400076: Hanger 8
+    400078: Hanger 9
+    400080: Hanger1
+    400082: Hanger10
+    400084: Hanger11
+    400086: Hanger12
+    400088: Hanger13
+    400090: Hanger14
+    400092: Hanger15
+    400094: Hanger16
+    400096: Hanger17
+    400098: Hanger18
+    400100: Hanger19
+    400102: Hanger2
+    400104: Hanger20
+    400106: Hanger21
+    400108: Hanger22
+    400110: Hanger23
+    400112: Hanger24
+    400114: Hanger25
+    400116: Hanger26
+    400118: Hanger27
+    400120: Hanger28
+    400122: Hanger3
+    400124: Hanger4
+    400126: Hanger5
+    400128: Hanger6
+    400130: Hanger7
+    400132: Hanger8
+    400134: Hanger9
+    400136: pPyramid1
+    400138: Safe
+    400140: Shirt
+    400142: Shirt 1
+    400144: Shirt 10
+    400146: Shirt 11
+    400148: Shirt 12
+    400150: Shirt 13
+    400152: Shirt 14
+    400154: Shirt 15
+    400156: Shirt 16
+    400158: Shirt 17
+    400160: Shirt 18
+    400162: Shirt 19
+    400164: Shirt 2
+    400166: Shirt 20
+    400168: Shirt 21
+    400170: Shirt 22
+    400172: Shirt 23
+    400174: Shirt 24
+    400176: Shirt 25
+    400178: Shirt 26
+    400180: Shirt 27
+    400182: Shirt 28
+    400184: Shirt 29
+    400186: Shirt 3
+    400188: Shirt 30
+    400190: Shirt 31
+    400192: Shirt 32
+    400194: Shirt 33
+    400196: Shirt 34
+    400198: Shirt 35
+    400200: Shirt 4
+    400202: Shirt 5
+    400204: Shirt 6
+    400206: Shirt 7
+    400208: Shirt 8
+    400210: Shirt 9
+    400212: Shirt1
+    400214: Shirt10
+    400216: Shirt11
+    400218: Shirt12
+    400220: Shirt13
+    400222: Shirt14
+    400224: Shirt15
+    400226: Shirt16
+    400228: Shirt17
+    400230: Shirt18
+    400232: Shirt19
+    400234: Shirt2
+    400236: Shirt20
+    400238: Shirt21
+    400240: Shirt22
+    400242: Shirt23
+    400244: Shirt24
+    400246: Shirt25
+    400248: Shirt26
+    400250: Shirt27
+    400252: Shirt28
+    400254: Shirt29
+    400256: Shirt3
+    400258: Shirt30
+    400260: Shirt31
+    400262: Shirt32
+    400264: Shirt33
+    400266: Shirt34
+    400268: Shirt4
+    400270: Shirt5
+    400272: Shirt6
+    400274: Shirt7
+    400276: Shirt8
+    400278: Shirt9
+    400280: Shirts_and_hanger
+    400282: Shoebox
+    400284: Shoebox1
+    400286: Shoebox2
+    400288: Shoebox3
+    2300000: Bball
+    2300002: Box
+    2300004: Box1
+    2300006: Box2
+    2300008: Hanger
+    2300010: Hanger 1
+    2300012: Hanger 10
+    2300014: Hanger 11
+    2300016: Hanger 12
+    2300018: Hanger 13
+    2300020: Hanger 14
+    2300022: Hanger 15
+    2300024: Hanger 16
+    2300026: Hanger 17
+    2300028: Hanger 18
+    2300030: Hanger 19
+    2300032: Hanger 2
+    2300034: Hanger 20
+    2300036: Hanger 21
+    2300038: Hanger 22
+    2300040: Hanger 23
+    2300042: Hanger 24
+    2300044: Hanger 25
+    2300046: Hanger 26
+    2300048: Hanger 27
+    2300050: Hanger 28
+    2300052: Hanger 29
+    2300054: Hanger 3
+    2300056: Hanger 30
+    2300058: Hanger 31
+    2300060: Hanger 32
+    2300062: Hanger 33
+    2300064: Hanger 34
+    2300066: Hanger 4
+    2300068: Hanger 5
+    2300070: Hanger 6
+    2300072: Hanger 7
+    2300074: Hanger 8
+    2300076: Hanger 9
+    2300078: Hanger1
+    2300080: Hanger10
+    2300082: Hanger11
+    2300084: Hanger12
+    2300086: Hanger13
+    2300088: Hanger14
+    2300090: Hanger15
+    2300092: Hanger16
+    2300094: Hanger17
+    2300096: Hanger18
+    2300098: Hanger19
+    2300100: Hanger2
+    2300102: Hanger20
+    2300104: Hanger21
+    2300106: Hanger22
+    2300108: Hanger23
+    2300110: Hanger24
+    2300112: Hanger25
+    2300114: Hanger26
+    2300116: Hanger27
+    2300118: Hanger28
+    2300120: Hanger3
+    2300122: Hanger4
+    2300124: Hanger5
+    2300126: Hanger6
+    2300128: Hanger7
+    2300130: Hanger8
+    2300132: Hanger9
+    2300134: pPyramid1
+    2300136: Safe
+    2300138: Shirt 1
+    2300140: Shirt 10
+    2300142: Shirt 11
+    2300144: Shirt 12
+    2300146: Shirt 13
+    2300148: Shirt 14
+    2300150: Shirt 15
+    2300152: Shirt 16
+    2300154: Shirt 17
+    2300156: Shirt 18
+    2300158: Shirt 19
+    2300160: Shirt 2
+    2300162: Shirt 20
+    2300164: Shirt 21
+    2300166: Shirt 22
+    2300168: Shirt 23
+    2300170: Shirt 24
+    2300172: Shirt 25
+    2300174: Shirt 26
+    2300176: Shirt 27
+    2300178: Shirt 28
+    2300180: Shirt 29
+    2300182: Shirt 3
+    2300184: Shirt 30
+    2300186: Shirt 31
+    2300188: Shirt 32
+    2300190: Shirt 33
+    2300192: Shirt 34
+    2300194: Shirt 35
+    2300196: Shirt 4
+    2300198: Shirt 5
+    2300200: Shirt 6
+    2300202: Shirt 7
+    2300204: Shirt 8
+    2300206: Shirt 9
+    2300208: Shoebox
+    2300210: Shoebox1
+    2300212: Shoebox2
+    2300214: Shoebox3
+    3300000: Bball
+    3300002: Box
+    3300004: Box1
+    3300006: Box2
+    3300008: Hanger
+    3300010: Hanger 1
+    3300012: Hanger 10
+    3300014: Hanger 11
+    3300016: Hanger 12
+    3300018: Hanger 13
+    3300020: Hanger 14
+    3300022: Hanger 15
+    3300024: Hanger 16
+    3300026: Hanger 17
+    3300028: Hanger 18
+    3300030: Hanger 19
+    3300032: Hanger 2
+    3300034: Hanger 20
+    3300036: Hanger 21
+    3300038: Hanger 22
+    3300040: Hanger 23
+    3300042: Hanger 24
+    3300044: Hanger 25
+    3300046: Hanger 26
+    3300048: Hanger 27
+    3300050: Hanger 28
+    3300052: Hanger 29
+    3300054: Hanger 3
+    3300056: Hanger 30
+    3300058: Hanger 31
+    3300060: Hanger 32
+    3300062: Hanger 33
+    3300064: Hanger 34
+    3300066: Hanger 4
+    3300068: Hanger 5
+    3300070: Hanger 6
+    3300072: Hanger 7
+    3300074: Hanger 8
+    3300076: Hanger 9
+    3300078: Hanger1
+    3300080: Hanger10
+    3300082: Hanger11
+    3300084: Hanger12
+    3300086: Hanger13
+    3300088: Hanger14
+    3300090: Hanger15
+    3300092: Hanger16
+    3300094: Hanger17
+    3300096: Hanger18
+    3300098: Hanger19
+    3300100: Hanger2
+    3300102: Hanger20
+    3300104: Hanger21
+    3300106: Hanger22
+    3300108: Hanger23
+    3300110: Hanger24
+    3300112: Hanger25
+    3300114: Hanger26
+    3300116: Hanger27
+    3300118: Hanger28
+    3300120: Hanger3
+    3300122: Hanger4
+    3300124: Hanger5
+    3300126: Hanger6
+    3300128: Hanger7
+    3300130: Hanger8
+    3300132: Hanger9
+    3300134: pPyramid1
+    3300136: Safe
+    3300138: Shirt 1
+    3300140: Shirt 10
+    3300142: Shirt 11
+    3300144: Shirt 12
+    3300146: Shirt 13
+    3300148: Shirt 14
+    3300150: Shirt 15
+    3300152: Shirt 16
+    3300154: Shirt 17
+    3300156: Shirt 18
+    3300158: Shirt 19
+    3300160: Shirt 2
+    3300162: Shirt 20
+    3300164: Shirt 21
+    3300166: Shirt 22
+    3300168: Shirt 23
+    3300170: Shirt 24
+    3300172: Shirt 25
+    3300174: Shirt 26
+    3300176: Shirt 27
+    3300178: Shirt 28
+    3300180: Shirt 29
+    3300182: Shirt 3
+    3300184: Shirt 30
+    3300186: Shirt 31
+    3300188: Shirt 32
+    3300190: Shirt 33
+    3300192: Shirt 34
+    3300194: Shirt 35
+    3300196: Shirt 4
+    3300198: Shirt 5
+    3300200: Shirt 6
+    3300202: Shirt 7
+    3300204: Shirt 8
+    3300206: Shirt 9
+    3300208: Shoebox
+    3300210: Shoebox1
+    3300212: Shoebox2
+    3300214: Shoebox3
+    4300000: Bball
+    4300002: Box
+    4300004: Box1
+    4300006: Box2
+    4300008: pPyramid1
+    4300010: Safe
+    4300012: Shoebox
+    4300014: Shoebox1
+    4300016: Shoebox2
+    4300018: Shoebox3
+    4300020: Shirt
+    4300022: Hanger
+    4300024: Shirt
+    4300026: Hanger
+    4300028: Shirt
+    4300030: Hanger
+    4300032: Shirt
+    4300034: Hanger
+    4300036: Shirt
+    4300038: Hanger
+    4300040: Shirt
+    4300042: Hanger
+    4300044: Shirt
+    4300046: Hanger
+    4300048: Shirt
+    4300050: Hanger
+    4300052: Shirt
+    4300054: Hanger
+    4300056: Shirt
+    4300058: Hanger
+    4300060: Shirt
+    4300062: Hanger
+    4300064: Shirt
+    4300066: Hanger
+    4300068: Shirt
+    4300070: Hanger
+    4300072: Shirt
+    4300074: Hanger
+    4300076: Shirt
+    4300078: Hanger
+    4300080: Shirt
+    4300082: Hanger
+    4300084: Shirt
+    4300086: Hanger
+    4300088: Shirt
+    4300090: Hanger
+    4300092: Shirt
+    4300094: Hanger
+    4300096: Shirt
+    4300098: Hanger
+    4300100: Shirt
+    4300102: Hanger
+    4300104: Shirt
+    4300106: Hanger
+    4300108: Hanger10
+    4300110: Hanger9
+    4300112: Hanger8
+    4300114: Hanger7
+    4300116: Hanger6
+    4300118: Hanger5
+    4300120: Hanger4
+    4300122: Hanger3
+    4300124: Hanger2
+    4300126: Hanger1
+    4300128: Hanger11
+    4300130: Hanger12
+    4300132: Hanger13
+    4300134: Hanger14
+    4300136: Hanger15
+    4300138: Hanger16
+    4300140: Hanger17
+    4300142: Hanger18
+    4300144: Hanger19
+    4300146: Shirt
+    4300148: Hanger
+    4300150: Shirt
+    4300152: Hanger
+    4300154: Shirt
+    4300156: Hanger
+    4300158: Shirt
+    4300160: Hanger
+    4300162: Shirt
+    4300164: Hanger
+    4300166: Shirt
+    4300168: Hanger
+    4300170: Shirt
+    4300172: Hanger
+    4300174: Shirt
+    4300176: Hanger
+    4300178: Shirt
+    4300180: Hanger
+    4300182: Shirt
+    4300184: Hanger
+    4300186: Shirt
+    4300188: Hanger
+    4300190: Shirt
+    4300192: Hanger
+    4300194: Shirt
+    4300196: Hanger
+    4300198: Hanger20
+    4300200: Hanger21
+    4300202: Hanger22
+    4300204: Hanger23
+    4300206: Hanger24
+    4300208: Hanger25
+    4300210: Hanger26
+    4300212: Hanger27
+    4300214: Hanger28
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: eeea7048b5d55e84c9d44d70e1a63a6b
+timeCreated: 1495358336
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Box
+    100002: Cup
+    100004: Marker
+    100006: Marker1
+    100008: Marker2
+    100010: Notepad
+    100012: Pen
+    100014: Pen1
+    100016: Pen2
+    100018: Pen3
+    100020: Pen4
+    100022: Pen5
+    100024: Pen6
+    100026: Pen7
+    100028: Pencil
+    100030: Pencil1
+    100032: Pencil2
+    100034: Pencil3
+    100036: Pencil4
+    100038: Pencil5
+    100040: Pencil6
+    100042: Pencil_holder
+    100044: //RootNode
+    100046: Tissue
+    100048: Tissue_box
+    400000: Box
+    400002: Cup
+    400004: Marker
+    400006: Marker1
+    400008: Marker2
+    400010: Notepad
+    400012: Pen
+    400014: Pen1
+    400016: Pen2
+    400018: Pen3
+    400020: Pen4
+    400022: Pen5
+    400024: Pen6
+    400026: Pen7
+    400028: Pencil
+    400030: Pencil1
+    400032: Pencil2
+    400034: Pencil3
+    400036: Pencil4
+    400038: Pencil5
+    400040: Pencil6
+    400042: Pencil_holder
+    400044: //RootNode
+    400046: Tissue
+    400048: Tissue_box
+    2300000: Box
+    2300002: Cup
+    2300004: Marker
+    2300006: Marker1
+    2300008: Marker2
+    2300010: Notepad
+    2300012: Pen
+    2300014: Pen1
+    2300016: Pen2
+    2300018: Pen3
+    2300020: Pen4
+    2300022: Pen5
+    2300024: Pen6
+    2300026: Pen7
+    2300028: Pencil
+    2300030: Pencil1
+    2300032: Pencil2
+    2300034: Pencil3
+    2300036: Pencil4
+    2300038: Pencil5
+    2300040: Pencil6
+    2300042: Pencil_holder
+    2300044: Tissue
+    3300000: Box
+    3300002: Cup
+    3300004: Marker
+    3300006: Marker1
+    3300008: Marker2
+    3300010: Notepad
+    3300012: Pen
+    3300014: Pen1
+    3300016: Pen2
+    3300018: Pen3
+    3300020: Pen4
+    3300022: Pen5
+    3300024: Pen6
+    3300026: Pen7
+    3300028: Pencil
+    3300030: Pencil1
+    3300032: Pencil2
+    3300034: Pencil3
+    3300036: Pencil4
+    3300038: Pencil5
+    3300040: Pencil6
+    3300042: Pencil_holder
+    3300044: Tissue
+    4300000: Cup
+    4300002: Marker
+    4300004: Marker1
+    4300006: Marker2
+    4300008: Notepad
+    4300010: Pen
+    4300012: Pen1
+    4300014: Pen2
+    4300016: Pen3
+    4300018: Pen4
+    4300020: Pen5
+    4300022: Pen6
+    4300024: Pen7
+    4300026: Pencil
+    4300028: Pencil1
+    4300030: Pencil2
+    4300032: Pencil3
+    4300034: Pencil4
+    4300036: Pencil5
+    4300038: Pencil6
+    4300040: Pencil_holder
+    4300042: Box
+    4300044: Tissue
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
