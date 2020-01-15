@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LookAtAdjustButtonScript : MonoBehaviour {
 
@@ -21,7 +22,6 @@ public class LookAtAdjustButtonScript : MonoBehaviour {
 	}
 
 	public void SeizureLookedAt(){
-        Debug.Log("THIS IS HAPPENE");
 		fillOption = true;
 
 	}
@@ -44,7 +44,11 @@ public class LookAtAdjustButtonScript : MonoBehaviour {
 			}
 			yield return new WaitForSeconds (0.01f);
 		}
-		VolumeControl.GetComponent<StartingWhisperScript> ().TurnDownWhisperVolue ();
+
+        SceneManager.LoadScene("ClassRoomSizing");
+
+
+        VolumeControl.GetComponent<StartingWhisperScript> ().TurnDownWhisperVolue ();
 		CrossFadePanel.GetComponent<CrossFadePanelStartSCript> ().FadeToBlakeaW ();
 	}
 
