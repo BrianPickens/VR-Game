@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [SerializeField]
+    private CameraBlackOut BlackOutScreen = null;
+
+    [SerializeField]
+    private LogoIntro LogoPopUp = null;
 
     [SerializeField]
     private IntroPopUpText LookTutorialPopUp = null;
@@ -12,11 +17,21 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     private IntroPopUpText SeizureWarningPopUp = null;
 
+    [SerializeField]
+    private LandingScreenUI LandingScreen = null;
+
+    [SerializeField]
+    private LevelSelect LevelSelect = null;
     //need to remember to turn down volume on whispers as the text is fading out
 
     private void Start()
     {
-        ShowLookTutorialPopUp();
+        BlackOutScreen.FadeOutBlocker(ShowLogo);
+    }
+
+    public void ShowLogo()
+    {
+        LogoPopUp.ShowLogoDisplaySequence(null, ShowLookTutorialPopUp);
     }
 
     public void ShowLookTutorialPopUp()
@@ -36,8 +51,34 @@ public class MainMenuUI : MonoBehaviour
 
     public void SeizureWarningConfirmed()
     {
-        //when completed, need to open the main menu
+        SeizureWarningPopUp.FadeOutPopUp(ShowLandingPage); 
     }
 
+    public void ShowLandingPage()
+    {
+        LandingScreen.FadeInPopUp(LandingScreen.MakeButtonsPressable);
+    }
+
+    public void PrivacyPolicyPressed()
+    {
+        LandingScreen.ResetPrivacyPolicyButton();
+        Application.OpenURL("http://brianpickensgames.com/PrivacyPolicyItsInHere.html");
+    }
+
+    public void BeginPressed()
+    {
+        LandingScreen.BlockButtons();
+        LandingScreen.FadeOutPopUp(ShowLevelSelect);
+    }
+
+    public void ShowLevelSelect()
+    {
+        LevelSelect.FadeInLevelSelect();
+    }
+
+    public void ReturnFromLevelSelect()
+    {
+        LevelSelect.FadeOutLevelSelect(ShowLandingPage);
+    }
 
 }

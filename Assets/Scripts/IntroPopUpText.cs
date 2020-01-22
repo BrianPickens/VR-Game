@@ -7,24 +7,28 @@ public class IntroPopUpText : MonoBehaviour
 {
 
     [SerializeField]
-    private CanvasGroup myCanvasGroup = null;
+    private CanvasGroup MyCanvasGroup = null;
 
     [SerializeField]
-    private float fadeSpeed = 1f;
+    private float FadeSpeed = 1f;
 
     [SerializeField]
-    LookButton myButton = null;
+    protected LookButton MyButton = null;
 
     public Action OnFadeOutCompleted;
 
-    public void FadeInPopUp()
+    public Action OnFadeInCompleted;
+
+    public void FadeInPopUp(Action _callback = null)
     {
-        myCanvasGroup.alpha = 0f;
+        OnFadeInCompleted = null;
+        OnFadeInCompleted = _callback;
+        MyCanvasGroup.alpha = 0f;
         gameObject.SetActive(true);
         StartCoroutine(FadeIn());
     }
 
-    public void FadeOutPopUp(Action _callback)
+    public void FadeOutPopUp(Action _callback = null)
     {
         OnFadeOutCompleted = null;
         OnFadeOutCompleted = _callback;
@@ -33,29 +37,33 @@ public class IntroPopUpText : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
-        while (myCanvasGroup.alpha < 1f)
+        while (MyCanvasGroup.alpha < 1f)
         {
-            myCanvasGroup.alpha = Mathf.MoveTowards(myCanvasGroup.alpha, 1f, fadeSpeed * Time.deltaTime);
+            MyCanvasGroup.alpha = Mathf.MoveTowards(MyCanvasGroup.alpha, 1f, FadeSpeed * Time.deltaTime);
             yield return null;
         }
 
-        myCanvasGroup.alpha = 1f;
-        myButton.MakeButtonPressable(true);
-
+        MyCanvasGroup.alpha = 1f;
+        MyButton.MakeButtonPressable(true);
+        if (OnFadeInCompleted != null)
+        {
+            OnFadeInCompleted();
+        }
     }
 
     private IEnumerator FadeOut()
     {
-        while (myCanvasGroup.alpha > 0f)
+        while (MyCanvasGroup.alpha > 0f)
         {
-            myCanvasGroup.alpha = Mathf.MoveTowards(myCanvasGroup.alpha, 0f, fadeSpeed * Time.deltaTime);
+            MyCanvasGroup.alpha = Mathf.MoveTowards(MyCanvasGroup.alpha, 0f, FadeSpeed * Time.deltaTime);
             yield return null;
         }
 
-        myCanvasGroup.alpha = 0f;
+        MyCanvasGroup.alpha = 0f;
         if (OnFadeOutCompleted != null)
         {
             OnFadeOutCompleted();
         }
+        gameObject.SetActive(false);
     }
 }

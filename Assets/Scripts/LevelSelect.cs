@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CameraBlackOut : MonoBehaviour
+public class LevelSelect : MonoBehaviour
 {
     [SerializeField]
     private CanvasGroup MyCanvasGroup = null;
@@ -11,11 +11,14 @@ public class CameraBlackOut : MonoBehaviour
     [SerializeField]
     private float FadeSpeed = 1f;
 
+    [SerializeField]
+    private LookButton BackButton = null;
+
     public Action OnFadeOutCompleted;
 
     public Action OnFadeInCompleted;
 
-    public void FadeInBlocker(Action _callback = null)
+    public void FadeInLevelSelect(Action _callback = null)
     {
         OnFadeInCompleted = null;
         OnFadeInCompleted = _callback;
@@ -24,12 +27,10 @@ public class CameraBlackOut : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
-    public void FadeOutBlocker(Action _callback = null)
+    public void FadeOutLevelSelect(Action _callback = null)
     {
         OnFadeOutCompleted = null;
         OnFadeOutCompleted = _callback;
-        MyCanvasGroup.alpha = 1f;
-        gameObject.SetActive(true);
         StartCoroutine(FadeOut());
     }
 
@@ -46,6 +47,7 @@ public class CameraBlackOut : MonoBehaviour
         {
             OnFadeInCompleted();
         }
+        MakeButtonsPressable();
     }
 
     private IEnumerator FadeOut()
@@ -64,4 +66,8 @@ public class CameraBlackOut : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void MakeButtonsPressable()
+    {
+        BackButton.ResetButton();
+    }
 }

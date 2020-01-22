@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CameraBlackOut : MonoBehaviour
+public class LogoIntro : MonoBehaviour
 {
     [SerializeField]
     private CanvasGroup MyCanvasGroup = null;
@@ -15,21 +15,19 @@ public class CameraBlackOut : MonoBehaviour
 
     public Action OnFadeInCompleted;
 
-    public void FadeInBlocker(Action _callback = null)
+    public void ShowLogoDisplaySequence(Action _fadeInCallback = null, Action _fadeOutCallback = null)
     {
         OnFadeInCompleted = null;
-        OnFadeInCompleted = _callback;
+        OnFadeInCompleted = _fadeInCallback;
+        OnFadeOutCompleted = null;
+        OnFadeOutCompleted = _fadeOutCallback;
         MyCanvasGroup.alpha = 0f;
         gameObject.SetActive(true);
         StartCoroutine(FadeIn());
     }
 
-    public void FadeOutBlocker(Action _callback = null)
+    private void FadeOutPopUp()
     {
-        OnFadeOutCompleted = null;
-        OnFadeOutCompleted = _callback;
-        MyCanvasGroup.alpha = 1f;
-        gameObject.SetActive(true);
         StartCoroutine(FadeOut());
     }
 
@@ -46,6 +44,9 @@ public class CameraBlackOut : MonoBehaviour
         {
             OnFadeInCompleted();
         }
+
+        yield return new WaitForSeconds(1.5f);
+        FadeOutPopUp();
     }
 
     private IEnumerator FadeOut()
@@ -63,5 +64,4 @@ public class CameraBlackOut : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
-
 }

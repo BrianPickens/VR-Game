@@ -87,6 +87,7 @@ public class LookButton : LookTarget
     {
         FillImage.fillAmount = 0f;
         buttonPressed = false;
+        isPressable = true;
     }
 
 }
