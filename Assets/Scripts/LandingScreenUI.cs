@@ -16,8 +16,8 @@ public class LandingScreenUI : IntroPopUpText
 
     public void MakeButtonsPressable()
     {
-        MyButton.ResetButton();
-        PrivacyPolicyButton.ResetButton();
+        MyButton.MakeButtonPressable(true);
+        PrivacyPolicyButton.MakeButtonPressable(true);
     }
 
     public void MakePrivacyPolicyPressable()

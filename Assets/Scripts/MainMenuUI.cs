@@ -56,18 +56,19 @@ public class MainMenuUI : MonoBehaviour
 
     public void ShowLandingPage()
     {
+        LandingScreen.BlockButtons();
         LandingScreen.FadeInPopUp(LandingScreen.MakeButtonsPressable);
     }
 
     public void PrivacyPolicyPressed()
     {
         LandingScreen.ResetPrivacyPolicyButton();
+        LandingScreen.MakePrivacyPolicyPressable();
         Application.OpenURL("http://brianpickensgames.com/PrivacyPolicyItsInHere.html");
     }
 
     public void BeginPressed()
     {
-        LandingScreen.BlockButtons();
         LandingScreen.FadeOutPopUp(ShowLevelSelect);
     }
 

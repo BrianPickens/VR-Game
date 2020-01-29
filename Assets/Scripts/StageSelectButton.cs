@@ -6,48 +6,22 @@ using UnityEngine.Events;
 using System;
 
 [Serializable]
-public class ButtonEvent : UnityEvent {}
+public class StageButtonEvent : UnityEvent<string, StageSelectButton> { }
 
-public class LookButton : LookTarget
+public class StageSelectButton : LookTarget
 {
     [SerializeField]
-    ButtonEvent ButtonPressedEvent = null;
+    StageButtonEvent ButtonPressedEvent = null;
+
+    [SerializeField]
+    private string LevelID = null;
 
     [SerializeField]
     private Image FillImage = null;
 
-    [SerializeField]
-    private float FillSpeed = 1f;
-
     private bool buttonPressed = false;
 
     private bool isPressable = false;
-
-    private void Update()
-    {
-        MoveFill();
-    }
-
-    private void MoveFill()
-    {
-        if (!buttonPressed && isPressable)
-        {
-            if (isLookedAt)
-            {
-                FillImage.fillAmount = Mathf.MoveTowards(FillImage.fillAmount, 1f, FillSpeed * Time.deltaTime);
-            }
-            else
-            {
-                FillImage.fillAmount = Mathf.MoveTowards(FillImage.fillAmount, 0f, FillSpeed * Time.deltaTime);
-            }
-
-            if (FillImage.fillAmount >= 0.99f)
-            {
-                ButtonPressed();
-            }
-        }
-
-    }
 
     public override void LookStarted()
     {
@@ -62,7 +36,9 @@ public class LookButton : LookTarget
     protected override void StartLookResponse()
     {
         base.StartLookResponse();
-        //DON'T FORGET TO ADD WHISPERING SOUNDS BACK IN WHEN YOU REDO THE SOUND SYSTEM
+        FillImage.fillAmount = 1f;
+        ButtonPressed();
+        //add selection sounds
     }
 
 
@@ -75,7 +51,7 @@ public class LookButton : LookTarget
     {
         LookEnded();
         buttonPressed = true;
-        ButtonPressedEvent.Invoke();
+        ButtonPressedEvent.Invoke(LevelID, this);
     }
 
     public void MakeButtonPressable(bool _isPressable)
@@ -89,6 +65,13 @@ public class LookButton : LookTarget
     {
         FillImage.fillAmount = 0f;
         buttonPressed = false;
+        isPressable = false;
+    }
+
+    public void SetAsPressed()
+    {
+        FillImage.fillAmount = 1f;
+        buttonPressed = true;
         isPressable = false;
     }
 

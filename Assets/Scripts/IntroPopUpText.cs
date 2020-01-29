@@ -64,6 +64,7 @@ public class IntroPopUpText : MonoBehaviour
         {
             OnFadeOutCompleted();
         }
+        MyButton.ResetButton();
         gameObject.SetActive(false);
     }
 }
