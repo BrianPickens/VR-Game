@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LookTargeting : MonoBehaviour
 {
+    [SerializeField]
+    private Reticle reticle = null;
+
     private LookTarget currentLookTarget = null;
 
     private void Update()
@@ -35,6 +38,7 @@ public class LookTargeting : MonoBehaviour
 
                 //start look at new target
                 currentLookTarget.LookStarted();
+                reticle.LookingAtTarget();
             }
         }
         else
@@ -45,6 +49,7 @@ public class LookTargeting : MonoBehaviour
                 Debug.Log("Stopped Looking At: " + currentLookTarget.name);
                 currentLookTarget.LookEnded();
                 currentLookTarget = null;
+                reticle.StoppedLookingAtTarget();
             }
         }
 
