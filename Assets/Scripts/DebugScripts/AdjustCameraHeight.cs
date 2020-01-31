@@ -27,6 +27,9 @@ public class AdjustCameraHeight : MonoBehaviour
         {
             DecreaseCameraHeight();
         }
+
+        CameraHeight.text = Player.transform.position.y + "";
+
     }
 
     public void IncreaseCameraHeight()
