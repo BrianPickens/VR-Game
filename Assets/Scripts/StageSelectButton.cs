@@ -23,6 +23,12 @@ public class StageSelectButton : LookTarget
 
     private bool isPressable = false;
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+        myAudioSource.volume = MaxVolume;
+    }
     public override void LookStarted()
     {
         base.LookStarted();
@@ -37,6 +43,10 @@ public class StageSelectButton : LookTarget
     {
         base.StartLookResponse();
         FillImage.fillAmount = 1f;
+        if (!buttonPressed)
+        {
+            myAudioSource.PlayOneShot(SoundClip);
+        }
         ButtonPressed();
         //add selection sounds
     }

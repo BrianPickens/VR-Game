@@ -19,9 +19,20 @@ public class LookButton : LookTarget
     [SerializeField]
     private float FillSpeed = 1f;
 
+    [SerializeField]
+    protected float SoundFadeSpeed = 1f;
+
     private bool buttonPressed = false;
 
     private bool isPressable = false;
+
+    private IEnumerator soundRoutine = null;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        myAudioSource.Play();
+    }
 
     private void Update()
     {
@@ -62,13 +73,35 @@ public class LookButton : LookTarget
     protected override void StartLookResponse()
     {
         base.StartLookResponse();
-        //DON'T FORGET TO ADD WHISPERING SOUNDS BACK IN WHEN YOU REDO THE SOUND SYSTEM
+        if (SoundClip != null)
+        {
+            if (!myAudioSource.isPlaying)
+            {
+                myAudioSource.Play();
+            }
+
+            if (soundRoutine != null)
+            {
+                StopCoroutine(soundRoutine);
+            }
+            soundRoutine = SoundRoutine(true);
+            StartCoroutine(soundRoutine);
+        }
     }
 
 
     protected override void EndLookResponse()
     {
         base.EndLookResponse();
+        if (SoundClip != null)
+        {
+            if (soundRoutine != null)
+            {
+                StopCoroutine(soundRoutine);
+            }
+            soundRoutine = SoundRoutine(false);
+            StartCoroutine(soundRoutine);
+        }
     }
 
     private void ButtonPressed()
@@ -90,6 +123,26 @@ public class LookButton : LookTarget
         FillImage.fillAmount = 0f;
         buttonPressed = false;
         isPressable = false;
+    }
+
+        private IEnumerator SoundRoutine(bool _fadeIn)
+    {
+        if (_fadeIn)
+        {
+            while (Mathf.Abs(myAudioSource.volume - MaxVolume) > Mathf.Epsilon)
+            {
+                myAudioSource.volume = Mathf.MoveTowards(myAudioSource.volume, MaxVolume, SoundFadeSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (Mathf.Abs(myAudioSource.volume - 0) > Mathf.Epsilon)
+            {
+                myAudioSource.volume = Mathf.MoveTowards(myAudioSource.volume, 0f, SoundFadeSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
     }
 
 }
