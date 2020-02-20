@@ -19,16 +19,41 @@ public class StageSelectButton : LookTarget
     [SerializeField]
     private Image FillImage = null;
 
+    [SerializeField]
+    private Image HighlightedBackground = null;
+
+    [SerializeField]
+    private float FillSpeed = 10f;
+
     private bool buttonPressed = false;
 
     private bool isPressable = false;
 
+    private bool fillOutline = false;
 
     protected override void Awake()
     {
         base.Awake();
         myAudioSource.volume = MaxVolume;
     }
+
+    private void Update()
+    {
+        MoveHighlightedFill();
+    }
+
+    private void MoveHighlightedFill()
+    {
+        if (fillOutline)
+        {
+            HighlightedBackground.fillAmount = Mathf.MoveTowards(HighlightedBackground.fillAmount, 1f, FillSpeed * Time.deltaTime);
+        }
+        else
+        {
+            HighlightedBackground.fillAmount = Mathf.MoveTowards(HighlightedBackground.fillAmount, 0f, FillSpeed * Time.deltaTime);
+        }
+    }
+
     public override void LookStarted()
     {
         base.LookStarted();
@@ -42,6 +67,7 @@ public class StageSelectButton : LookTarget
     protected override void StartLookResponse()
     {
         base.StartLookResponse();
+        fillOutline = true;
         FillImage.fillAmount = 1f;
         if (!buttonPressed)
         {
@@ -60,12 +86,14 @@ public class StageSelectButton : LookTarget
     private void ButtonPressed()
     {
         LookEnded();
+        fillOutline = true;
         buttonPressed = true;
         ButtonPressedEvent.Invoke(LevelID, this);
     }
 
     public void MakeButtonPressable(bool _isPressable)
     {
+        fillOutline = false;
         FillImage.fillAmount = 0f;
         buttonPressed = false;
         isPressable = _isPressable;
@@ -73,6 +101,7 @@ public class StageSelectButton : LookTarget
 
     public void ResetButton()
     {
+        fillOutline = false;
         FillImage.fillAmount = 0f;
         buttonPressed = false;
         isPressable = false;
@@ -80,6 +109,7 @@ public class StageSelectButton : LookTarget
 
     public void SetAsPressed()
     {
+        fillOutline = true;
         FillImage.fillAmount = 1f;
         buttonPressed = true;
         isPressable = false;
