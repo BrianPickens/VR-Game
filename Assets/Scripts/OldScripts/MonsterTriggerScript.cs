@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterTriggerScript : MonoBehaviour {
+public class MonsterTriggerScript : LookTarget {
 
 	public GameObject BedsideMonster;
 	public GameObject GameEnder;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	protected override void StartLookResponse()
+	{
+		base.StartLookResponse();
+		LookingAtMonster();
+		gameObject.SetActive(false);
 	}
 
 	public void LookingAtMonster(){

@@ -21,8 +21,11 @@ public class LookTarget : MonoBehaviour
     protected virtual void Awake()
     {
         myAudioSource = GetComponent<AudioSource>();
-        myAudioSource.volume = 0f;
-        myAudioSource.clip = SoundClip;
+        if (myAudioSource != null)
+        {
+            myAudioSource.volume = 0f;
+            myAudioSource.clip = SoundClip;
+        }
     }
 
     public virtual void LookStarted()

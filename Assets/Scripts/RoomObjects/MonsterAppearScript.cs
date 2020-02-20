@@ -6,15 +6,10 @@ public class MonsterAppearScript : MonoBehaviour {
 
 	public GameObject Monster;
 
-	// Use this for initialization
 	void Start () {
 		TurnMonsterOff ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void TurnMonsterOn(){
 		Monster.SetActive (true);
