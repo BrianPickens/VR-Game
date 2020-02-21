@@ -10,6 +10,9 @@ public class TimelineScript : MonoBehaviour {
 
 	//private bool gameOn;
 
+	[SerializeField]
+	private CameraBlackOut BlackOut = null;
+
 	public GameObject SoundEffects;
 	public GameObject Lamp;
 	public GameObject LightningLight;
@@ -65,6 +68,9 @@ public class TimelineScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//delete the if after release
+
+		BlackOut.FadeOutBlocker();
+
 		if (runGame) {
 			BeginGame ();
 		}

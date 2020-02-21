@@ -26,7 +26,14 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        BlackOutScreen.FadeOutBlocker(ShowLogo);
+        if (!StaticInfo.Instance.SkipIntro)
+        {
+            BlackOutScreen.FadeOutBlocker(ShowLogo);
+        }
+        else
+        {
+            BlackOutScreen.FadeOutBlocker(ShowLandingPage);
+        }
     }
 
     public void ShowLogo()

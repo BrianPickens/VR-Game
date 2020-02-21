@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterTriggerScript : LookTarget {
 
 	public GameObject BedsideMonster;
-	public GameObject GameEnder;
+	public CameraBlackOut BlackOut;
 
 	protected override void StartLookResponse()
 	{
@@ -16,7 +16,25 @@ public class MonsterTriggerScript : LookTarget {
 
 	public void LookingAtMonster(){
 		BedsideMonster.GetComponent<BedsideMonsterScript> ().PopMonster ();
-		GameEnder.GetComponent<FadeIntroScript> ().BlackOutEnding ();
+		StartCoroutine(DelayBeforeBlackoutCo());
 	}
+
+	private IEnumerator DelayBeforeBlackoutCo()
+	{
+		yield return new WaitForSeconds(1f);
+		BlackOut.FadeInBlocker(StartEndRoutine);
+	}
+
+	public void StartEndRoutine()
+	{
+		StartCoroutine(EndGameCo());
+	}
+
+	IEnumerator EndGameCo()
+	{
+		yield return new WaitForSeconds(3f);
+		SceneLoader.Instance.LoadScene("EndScreen");
+	}
+
 
 }
