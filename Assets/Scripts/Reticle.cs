@@ -19,14 +19,20 @@ public class Reticle : MonoBehaviour
 
     public void LookingAtTarget()
     {
-        MyReticle.sprite = RedReticle;
-        MyAnimator.SetBool("Grow", true);
+        if (isActiveAndEnabled)
+        {
+            MyReticle.sprite = RedReticle;
+            MyAnimator.SetBool("Grow", true);
+        }
     }
 
     public void StoppedLookingAtTarget()
     {
-        MyReticle.sprite = WhiteReticle;
-        MyAnimator.SetBool("Grow", false);
+        if (isActiveAndEnabled)
+        {
+            MyReticle.sprite = WhiteReticle;
+            MyAnimator.SetBool("Grow", false);
+        }
     }
 
 }

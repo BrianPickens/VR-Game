@@ -24,8 +24,6 @@ public class LookButton : LookTarget
 
     private bool buttonPressed = false;
 
-    private bool isPressable = false;
-
     private IEnumerator soundRoutine = null;
 
     protected override void Awake()
@@ -73,7 +71,7 @@ public class LookButton : LookTarget
     protected override void StartLookResponse()
     {
         base.StartLookResponse();
-        if (SoundClip != null)
+        if (SoundClip != null && isPressable)
         {
             if (!myAudioSource.isPlaying)
             {

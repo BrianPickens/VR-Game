@@ -27,13 +27,12 @@ public class StageSelectButton : LookTarget
 
     private bool buttonPressed = false;
 
-    private bool isPressable = false;
-
     private bool fillOutline = false;
 
     protected override void Awake()
     {
         base.Awake();
+        isPressable = true;
         myAudioSource.volume = MaxVolume;
     }
 

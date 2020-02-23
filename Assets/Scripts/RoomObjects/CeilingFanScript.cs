@@ -56,7 +56,7 @@ public class CeilingFanScript : MonoBehaviour {
 	}
 
 	public IEnumerator IdleFanCo(){
-		while (_myanim.speed > 0) {
+		while (_myanim.speed > 0.02) {
 			_myanim.speed -= 0.01f;
 			yield return new WaitForSeconds (0.03f);
 		}

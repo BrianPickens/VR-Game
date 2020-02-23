@@ -22,6 +22,12 @@ public class LookTargeting : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, 100.0f, 1 << 8))
         {
             LookTarget currentTarget = hitInfo.transform.GetComponent<LookTarget>();
+
+            if (!currentTarget.GetPressableStatus())
+            {
+                return;
+            }
+
             if (currentTarget != currentLookTarget)
             {
                 //end the look of our last object if we didn't already end it while looking around
@@ -40,6 +46,7 @@ public class LookTargeting : MonoBehaviour
                 currentLookTarget.LookStarted();
                 reticle.LookingAtTarget();
             }
+
         }
         else
         {

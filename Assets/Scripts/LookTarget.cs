@@ -16,6 +16,8 @@ public class LookTarget : MonoBehaviour
 
     protected bool isLookedAt = false;
 
+    protected bool isPressable = false;
+
     protected AudioSource myAudioSource = null;
 
     protected virtual void Awake()
@@ -57,6 +59,9 @@ public class LookTarget : MonoBehaviour
 
     }
 
-
+    public bool GetPressableStatus()
+    {
+        return isPressable;
+    }
 
 }

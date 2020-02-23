@@ -12,7 +12,11 @@ public class ToggleButton : LookTarget
 
     private bool buttonPressed = false;
 
-    private bool isPressable = false;
+    protected override void Awake()
+    {
+        base.Awake();
+        isPressable = true;
+    }
 
     public override void LookStarted()
     {

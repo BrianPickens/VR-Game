@@ -6,12 +6,21 @@ public class MonsterTriggerScript : LookTarget {
 
 	public GameObject BedsideMonster;
 	public CameraBlackOut BlackOut;
+	private bool triggered = false;
+
+	private void Start()
+	{
+		isPressable = true;
+	}
 
 	protected override void StartLookResponse()
 	{
 		base.StartLookResponse();
-		LookingAtMonster();
-		gameObject.SetActive(false);
+		if (!triggered)
+		{
+			triggered = true;
+			LookingAtMonster();
+		}
 	}
 
 	public void LookingAtMonster(){
@@ -21,8 +30,8 @@ public class MonsterTriggerScript : LookTarget {
 
 	private IEnumerator DelayBeforeBlackoutCo()
 	{
-		yield return new WaitForSeconds(1f);
-		BlackOut.FadeInBlocker(StartEndRoutine);
+		yield return new WaitForSeconds(0.75f);
+		BlackOut.FadeInBlocker(StartEndRoutine, 10f);
 	}
 
 	public void StartEndRoutine()

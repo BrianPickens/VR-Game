@@ -33,10 +33,13 @@ public class LevelSelect : MonoBehaviour
     private LookButton BackButton = null;
 
     [SerializeField]
+    private Image NotAvaliableImage = null;
+
+    [SerializeField]
     private StageSelectButton StartingButton = null;
 
     [SerializeField]
-    private LookButton StarteLevelButton = null;
+    private LookButton StartLevelButton = null;
 
     [SerializeField]
     private List<LevelInfo> levels = new List<LevelInfo>();
@@ -53,10 +56,12 @@ public class LevelSelect : MonoBehaviour
 
     public void Start()
     {
-        currentSelectedLevelID = "Room";
         lastButton = StartingButton;
         lastButton.SetAsPressed();
-        StarteLevelButton.MakeButtonPressable(true);
+        LevelButtonSelected("Room", lastButton);
+        StartLevelButton.MakeButtonPressable(true);
+
+        NotAvaliableImage.gameObject.SetActive(false);
     }
 
     public void FadeInLevelSelect(Action _callback = null)
@@ -93,6 +98,8 @@ public class LevelSelect : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
+
+        MakeButtonsInactive();
         while (MyCanvasGroup.alpha > 0f)
         {
             MyCanvasGroup.alpha = Mathf.MoveTowards(MyCanvasGroup.alpha, 0f, FadeSpeed * Time.deltaTime);
@@ -112,6 +119,12 @@ public class LevelSelect : MonoBehaviour
     private void MakeButtonsPressable()
     {
         BackButton.MakeButtonPressable(true);
+        StartLevelButton.MakeButtonPressable(true);
+    }
+
+    private void MakeButtonsInactive()
+    {
+        StartLevelButton.MakeButtonPressable(false);
     }
 
     public void LevelButtonSelected(string _LevelID, StageSelectButton _buttonPressed)
@@ -151,6 +164,17 @@ public class LevelSelect : MonoBehaviour
     private void DisplayLevelInfo(LevelInfo _levelInfo)
     {
         LevelDisplay.DisplayStageInfo(_levelInfo.LevelImage, _levelInfo.LevelText);
+
+        if (currentSelectedLevelID == "Classroom")
+        {
+            StartLevelButton.MakeButtonPressable(false);
+            NotAvaliableImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            StartLevelButton.MakeButtonPressable(true);
+            NotAvaliableImage.gameObject.SetActive(false);
+        }
     }
 
     public void StartLevelPressed()
@@ -158,6 +182,7 @@ public class LevelSelect : MonoBehaviour
         Debug.Log("Start level: " + currentSelectedLevelID);
 
         //fade out main camera and load using scene loader
+        BackButton.MakeButtonPressable(false);
         BlackOutScreen.FadeInBlocker(LoadLevel);
     }
 

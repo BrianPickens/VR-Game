@@ -53,7 +53,7 @@ public class OSfanScript : MonoBehaviour {
 	}
 
 	public IEnumerator IdleOSfanCo(){
-		while (_myanim.speed > 0) {
+		while (_myanim.speed > 0.02f) {
 			_myanim.speed -= 0.01f;
 			yield return new WaitForSeconds (0.03f);
 		}

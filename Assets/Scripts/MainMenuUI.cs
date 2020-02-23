@@ -22,7 +22,9 @@ public class MainMenuUI : MonoBehaviour
 
     [SerializeField]
     private LevelSelect LevelSelect = null;
-    //need to remember to turn down volume on whispers as the text is fading out
+
+    [SerializeField]
+    private ReticleText ReticleText = null;
 
     private void Start()
     {
@@ -34,6 +36,8 @@ public class MainMenuUI : MonoBehaviour
         {
             BlackOutScreen.FadeOutBlocker(ShowLandingPage);
         }
+
+        ReticleText.HideText();
     }
 
     public void ShowLogo()
@@ -44,10 +48,12 @@ public class MainMenuUI : MonoBehaviour
     public void ShowLookTutorialPopUp()
     {
         LookTutorialPopUp.FadeInPopUp();
+        ReticleText.FadeInText();
     }
 
     public void LookTutorialCompleted()
     {
+        ReticleText.FadeOutText();
         LookTutorialPopUp.FadeOutPopUp(ShowSeizureWarningPopUp);
     }
 
