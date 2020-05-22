@@ -3,7 +3,52 @@ guid: 721d1fc25f66e1f47bb4d11be811742c
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aluminium Material
+    second: {fileID: 2100000, guid: 5abb3124e14f1a148b774c3f626bbde6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lightpanel Material
+    second: {fileID: 2100000, guid: 8e86da8afb095fd45a58a4a6d87d6232, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Room Ceiling Tile Material
+    second: {fileID: 2100000, guid: c2ac56464042fd74f876bdc5af2a25b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Room Floor Material
+    second: {fileID: 2100000, guid: 330c6abe4b0e4d54aafb79bb9579b86b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Room Wall Material
+    second: {fileID: 2100000, guid: d4368aeab1881a643b890209a514bc93, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Floor Texture
+    second: {fileID: 2800000, guid: 85cd218c18cbe0e4e9aaa04d3a6006ed, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lightpanel Texture
+    second: {fileID: 2800000, guid: 73e5e4ff88b2e4e40931b34ce7078141, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Room Ceiling Texture
+    second: {fileID: 2800000, guid: da2fe92e7bc04d14bab8ab50a07f9b2f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Wall Texture
+    second: {fileID: 2800000, guid: c4fa9261e1b3e034bb3557fd09fb2c2d, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0

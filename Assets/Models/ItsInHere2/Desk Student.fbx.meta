@@ -3,7 +3,17 @@ guid: fca3cde448c2b4b4ebc90f587a04403b
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Deskchair Texture
+    second: {fileID: 2800000, guid: 25c9995c247571f44b2be52a257d58b2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Desktop Texture
+    second: {fileID: 2800000, guid: 6068329aa892ced438fd739d6559a469, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0

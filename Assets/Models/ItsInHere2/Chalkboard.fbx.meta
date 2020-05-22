@@ -3,7 +3,22 @@ guid: 5f63587314e96d04fa1d2c46090d5d6f
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chalkboard Material
+    second: {fileID: 2100000, guid: f6b57f04793c73840972b5f9b09c8fdb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DeskWood Material
+    second: {fileID: 2100000, guid: 459651c6029a7e246a70987f43ab028a, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chalkboard Texture
+    second: {fileID: 2800000, guid: 400c9240324a64745a04884d6617a1c3, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
