@@ -3,37 +3,7 @@ guid: f7fa6115746f393468722bf3c8922fe4
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Room Ceiling Tile Material
-    second: {fileID: 2100000, guid: 7720470f51f0afd4993167d772832e22, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Room Floor Material
-    second: {fileID: 2100000, guid: 946b3f47028d0b340ad1c71cd827b835, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Room Wall Material
-    second: {fileID: 2100000, guid: 5b34165e60655f84b92ec7ae97843475, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Floor Texture
-    second: {fileID: 2800000, guid: ecda379ff73fd5642a1d827e38843aeb, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Room Ceiling Texture
-    second: {fileID: 2800000, guid: b5cfb1a036bafa1429f10a20177ed512, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Wall Texture
-    second: {fileID: 2800000, guid: c7d78e13ee396ca4488a2af17a185cdf, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0

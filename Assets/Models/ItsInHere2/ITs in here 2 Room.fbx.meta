@@ -8,47 +8,52 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Aluminium Material
-    second: {fileID: 2100000, guid: 5abb3124e14f1a148b774c3f626bbde6, type: 2}
+    second: {fileID: 2100000, guid: f818f01249898ec45ae9e2fc05804ac8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Lightpanel Material
-    second: {fileID: 2100000, guid: 8e86da8afb095fd45a58a4a6d87d6232, type: 2}
+    second: {fileID: 2100000, guid: a5a944cdbb80da34a963513025b01129, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Room Ceiling Tile Material
-    second: {fileID: 2100000, guid: c2ac56464042fd74f876bdc5af2a25b3, type: 2}
+    second: {fileID: 2100000, guid: fbdc66646d6dc4e478f7ccc888f78c2d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Room Floor Material
-    second: {fileID: 2100000, guid: 330c6abe4b0e4d54aafb79bb9579b86b, type: 2}
+    second: {fileID: 2100000, guid: 8db355b45c3ef784eb1c6bbc9d875e8d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Room Wall Material
-    second: {fileID: 2100000, guid: d4368aeab1881a643b890209a514bc93, type: 2}
+    second: {fileID: 2100000, guid: 4f66914714cb5434e97bad5c1061e225, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Floor Texture
-    second: {fileID: 2800000, guid: 85cd218c18cbe0e4e9aaa04d3a6006ed, type: 3}
+    second: {fileID: 2800000, guid: 03d9633d5a36060409ac22dc4d37aa3c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Lightpanel Texture
-    second: {fileID: 2800000, guid: 73e5e4ff88b2e4e40931b34ce7078141, type: 3}
+    second: {fileID: 2800000, guid: 2079274a80bc8c24bb3514c2db0a41ac, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Room Ceiling Texture
-    second: {fileID: 2800000, guid: da2fe92e7bc04d14bab8ab50a07f9b2f, type: 3}
+    second: {fileID: 2800000, guid: 32314247fa56a0a4a9697d1f500b7f3c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Wall Normal
+    second: {fileID: 2800000, guid: 0c4d1b6ada365ed4b9051d2f70549d4c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Wall Texture
-    second: {fileID: 2800000, guid: c4fa9261e1b3e034bb3557fd09fb2c2d, type: 3}
+    second: {fileID: 2800000, guid: 684703328362d9347b4c7f3dc73834f2, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0

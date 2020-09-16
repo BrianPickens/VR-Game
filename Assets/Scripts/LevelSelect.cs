@@ -52,6 +52,8 @@ public class LevelSelect : MonoBehaviour
 
     public Action OnFadeInCompleted;
 
+    private bool levelStarting = false;
+
 
 
     public void Start()
@@ -130,6 +132,12 @@ public class LevelSelect : MonoBehaviour
     public void LevelButtonSelected(string _LevelID, StageSelectButton _buttonPressed)
     {
 
+        if (levelStarting)
+        {
+            //stop player from accidently changing the level while the fade out is happenign to load
+            return;
+        }
+
         if (lastButton != _buttonPressed)
         {
             lastButton.MakeButtonPressable(true);
@@ -165,7 +173,7 @@ public class LevelSelect : MonoBehaviour
     {
         LevelDisplay.DisplayStageInfo(_levelInfo.LevelImage, _levelInfo.LevelText);
 
-        if (currentSelectedLevelID == "Classroom")
+        if (currentSelectedLevelID == "")
         {
             StartLevelButton.MakeButtonPressable(false);
             NotAvaliableImage.gameObject.SetActive(true);
@@ -183,6 +191,7 @@ public class LevelSelect : MonoBehaviour
 
         //fade out main camera and load using scene loader
         BackButton.MakeButtonPressable(false);
+        levelStarting = true;
         BlackOutScreen.FadeInBlocker(LoadLevel);
     }
 

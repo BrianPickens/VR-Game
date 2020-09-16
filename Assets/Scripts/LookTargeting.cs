@@ -33,11 +33,11 @@ public class LookTargeting : MonoBehaviour
                 //end the look of our last object if we didn't already end it while looking around
                 if (currentLookTarget != null)
                 {
-                    Debug.Log("Stopped Looking At: " + currentLookTarget.name);
+                    //Debug.Log("Stopped Looking At: " + currentLookTarget.name);
                     currentLookTarget.LookEnded();
                 }
 
-                Debug.Log("Started Looking At: " + currentTarget.name);
+               // Debug.Log("Started Looking At: " + currentTarget.name);
 
                 //set new look target
                 currentLookTarget = currentTarget;
@@ -53,7 +53,7 @@ public class LookTargeting : MonoBehaviour
             //if we look away we end the look at our last target, and null it out
             if (currentLookTarget != null)
             {
-                Debug.Log("Stopped Looking At: " + currentLookTarget.name);
+                //Debug.Log("Stopped Looking At: " + currentLookTarget.name);
                 currentLookTarget.LookEnded();
                 currentLookTarget = null;
                 reticle.StoppedLookingAtTarget();

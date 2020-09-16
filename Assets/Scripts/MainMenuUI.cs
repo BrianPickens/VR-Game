@@ -24,6 +24,9 @@ public class MainMenuUI : MonoBehaviour
     private LevelSelect LevelSelect = null;
 
     [SerializeField]
+    private MenuCreditsScreenUI MenuCredits = null;
+
+    [SerializeField]
     private ReticleText ReticleText = null;
 
     private void Start()
@@ -93,6 +96,24 @@ public class MainMenuUI : MonoBehaviour
     public void ReturnFromLevelSelect()
     {
         LevelSelect.FadeOutLevelSelect(ShowLandingPage);
+    }
+
+    public void CreditsPressed()
+    {
+        LandingScreen.BlockButtons();
+        LandingScreen.FadeOutPopUp(ShowCreditsPage);
+    }
+
+    public void ShowCreditsPage()
+    {
+        MenuCredits.BlockButtons();
+        MenuCredits.FadeInPopUp(MenuCredits.MakeButtonsPressable);
+    }
+
+    public void ReturnFromCredits()
+    {
+        MenuCredits.BlockButtons();
+        MenuCredits.FadeOutPopUp(ShowLandingPage);
     }
 
 }

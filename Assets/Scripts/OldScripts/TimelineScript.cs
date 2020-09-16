@@ -65,6 +65,8 @@ public class TimelineScript : MonoBehaviour {
 
 	private float timeLapsed;
 
+	private float experienceLength = 0f;
+
 	// Use this for initialization
 	void Start () {
 		//delete the if after release
@@ -78,11 +80,11 @@ public class TimelineScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-//		if (gameOn) {
-//			timeLapsed += Time.deltaTime;
-//			Debug.Log (Mathf.RoundToInt (timeLapsed));
-//		}
+		experienceLength += Time.deltaTime;
+		//		if (gameOn) {
+		//			timeLapsed += Time.deltaTime;
+		//			Debug.Log (Mathf.RoundToInt (timeLapsed));
+		//		}
 
 	}
 
@@ -701,6 +703,7 @@ public class TimelineScript : MonoBehaviour {
 
 		//end shuffling to side of bed and monster leap
 
+		Debug.Log("Total Time: " + experienceLength);
 		//Debug.Log ("GAME OVER");
 	}
 }
