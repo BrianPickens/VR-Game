@@ -73,7 +73,6 @@ public class StageSelectButton : LookTarget
             myAudioSource.PlayOneShot(SoundClip);
         }
         ButtonPressed();
-        //add selection sounds
     }
 
 
@@ -101,6 +100,7 @@ public class StageSelectButton : LookTarget
     public void ResetButton()
     {
         fillOutline = false;
+        HighlightedBackground.fillAmount = 0f;
         FillImage.fillAmount = 0f;
         buttonPressed = false;
         isPressable = false;

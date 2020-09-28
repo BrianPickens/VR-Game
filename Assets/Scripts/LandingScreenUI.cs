@@ -40,5 +40,12 @@ public class LandingScreenUI : IntroPopUpText
         MyButton.ResetButton();
     }
 
+    public void EndLookOnButtons()
+    {
+        MyButton.LookEnded();
+        PrivacyPolicyButton.LookEnded();
+        CreditsButton.LookEnded();
+    }
+
 
 }

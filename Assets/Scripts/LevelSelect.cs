@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class LevelSelect : MonoBehaviour
 {
 
+    private enum StageType { Experiential, Interactive };
+
     [Serializable]
     private class LevelInfo
     {
@@ -16,6 +18,8 @@ public class LevelSelect : MonoBehaviour
         public Sprite LevelImage = null;
         public string LevelText = null;
     }
+
+    [SerializeField] private LookTargeting lookTargeting = null;
 
     [SerializeField]
     private CameraBlackOut BlackOutScreen = null;
@@ -35,11 +39,18 @@ public class LevelSelect : MonoBehaviour
     [SerializeField]
     private Image NotAvaliableImage = null;
 
-    [SerializeField]
-    private StageSelectButton StartingButton = null;
+    [SerializeField] private StageSelectButton StartingButtonExperiential = null;
+    [SerializeField] private StageSelectButton StartingButtonInteractive = null;
+
 
     [SerializeField]
     private LookButton StartLevelButton = null;
+
+    [SerializeField] private LookButton ExperientialButton = null;
+    [SerializeField] private LookButton InteractiveButton = null;
+
+    [SerializeField] private StageHolderUI ExperientialStageHolder = null;
+    [SerializeField] private StageHolderUI InteractiveStageHolder = null;
 
     [SerializeField]
     private List<LevelInfo> levels = new List<LevelInfo>();
@@ -54,15 +65,17 @@ public class LevelSelect : MonoBehaviour
 
     private bool levelStarting = false;
 
-
+    private StageType currentStageType = StageType.Experiential;
 
     public void Start()
     {
-        lastButton = StartingButton;
+        //ExperientialStageHolder.ShowStageHolder();
+        //InteractiveStageHolder.HideStageHolder();
+        lastButton = StartingButtonExperiential;
         lastButton.SetAsPressed();
-        LevelButtonSelected("Room", lastButton);
-        StartLevelButton.MakeButtonPressable(true);
 
+
+        LevelButtonSelected("Room", lastButton);
         NotAvaliableImage.gameObject.SetActive(false);
     }
 
@@ -72,6 +85,20 @@ public class LevelSelect : MonoBehaviour
         OnFadeInCompleted = _callback;
         MyCanvasGroup.alpha = 0f;
         gameObject.SetActive(true);
+        switch (currentStageType)
+        {
+            case StageType.Experiential:
+                ExperientialButton.SetAsPressed();
+                break;
+
+            case StageType.Interactive:
+                InteractiveButton.SetAsPressed();
+                break;
+
+            default:
+                Debug.LogError("Unknown enum in MakeButtonsPressable");
+                break;
+        }
         StartCoroutine(FadeIn());
     }
 
@@ -84,6 +111,11 @@ public class LevelSelect : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
+        //stops them from auto filling if they fade out and come back when someone is looking at them
+        StartLevelButton.LookEnded();
+        InteractiveButton.LookEnded();
+        ExperientialButton.LookEnded();
+
         while (MyCanvasGroup.alpha < 1f)
         {
             MyCanvasGroup.alpha = Mathf.MoveTowards(MyCanvasGroup.alpha, 1f, FadeSpeed * Time.deltaTime);
@@ -122,11 +154,41 @@ public class LevelSelect : MonoBehaviour
     {
         BackButton.MakeButtonPressable(true);
         StartLevelButton.MakeButtonPressable(true);
+
+        switch (currentStageType)
+        {
+            case StageType.Experiential:
+                InteractiveButton.MakeButtonPressable(true);
+                break;
+
+            case StageType.Interactive:
+                ExperientialButton.MakeButtonPressable(true);
+                break;
+
+            default:
+                Debug.LogError("Unknown enum in MakeButtonsPressable");
+                break;
+        }
+
     }
 
     private void MakeButtonsInactive()
     {
         StartLevelButton.MakeButtonPressable(false);
+        switch (currentStageType)
+        {
+            case StageType.Experiential:
+                InteractiveButton.MakeButtonPressable(false);
+                break;
+
+            case StageType.Interactive:
+                ExperientialButton.MakeButtonPressable(false);
+                break;
+
+            default:
+                Debug.LogError("Unknown enum in MakeButtonsPressable");
+                break;
+        }
     }
 
     public void LevelButtonSelected(string _LevelID, StageSelectButton _buttonPressed)
@@ -192,6 +254,7 @@ public class LevelSelect : MonoBehaviour
         //fade out main camera and load using scene loader
         BackButton.MakeButtonPressable(false);
         levelStarting = true;
+        lookTargeting.DisableTargeting();
         BlackOutScreen.FadeInBlocker(LoadLevel);
     }
 
@@ -199,4 +262,60 @@ public class LevelSelect : MonoBehaviour
     {
         SceneLoader.Instance.LoadScene(currentSelectedLevelID);
     }
+
+    public void ExperientialButtonPressed()
+    {
+        currentStageType = StageType.Experiential;
+        BackButton.MakeButtonPressable(false);
+        InteractiveButton.MakeButtonPressable(false);
+        StartLevelButton.MakeButtonPressable(false);
+        ExperientialButton.SetAsPressed();
+        InteractiveStageHolder.FadeOut(ShowExperientialStageHolder);
+    }
+
+    public void ShowExperientialStageHolder()
+    {
+        lastButton.ResetButton();
+        lastButton.MakeButtonPressable(true);
+        lastButton = StartingButtonExperiential;
+        lastButton.SetAsPressed();
+        LevelButtonSelected("Room", lastButton);
+        ExperientialStageHolder.FadeIn(ExperientialStageFadedIn);
+    }
+
+    public void ExperientialStageFadedIn()
+    {
+        BackButton.MakeButtonPressable(true);
+        InteractiveButton.MakeButtonPressable(true);
+        StartLevelButton.MakeButtonPressable(true);
+    }
+
+    public void InteractiveButtonPressed()
+    {
+        currentStageType = StageType.Interactive;
+        BackButton.MakeButtonPressable(false);
+        ExperientialButton.MakeButtonPressable(false);
+        StartLevelButton.MakeButtonPressable(false);
+        InteractiveButton.SetAsPressed();
+        ExperientialStageHolder.FadeOut(ShowInteractiveStageHolder);
+    }
+
+    public void ShowInteractiveStageHolder()
+    {
+        lastButton.ResetButton();
+        lastButton.MakeButtonPressable(true);
+        lastButton = StartingButtonInteractive;
+        lastButton.SetAsPressed();
+        LevelButtonSelected("Pumpkin", lastButton);
+        InteractiveStageHolder.FadeIn(InteractiveStageFadedIn);
+    }
+
+    public void InteractiveStageFadedIn()
+    {
+        BackButton.MakeButtonPressable(true);
+        ExperientialButton.MakeButtonPressable(true);
+        StartLevelButton.MakeButtonPressable(true);
+    }
+
+
 }

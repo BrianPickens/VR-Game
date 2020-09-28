@@ -21,6 +21,8 @@ public class SilenceTimeline : MonoBehaviour
     [SerializeField] private MonsterFade monsterFade = null;
     [SerializeField] private MonsterBreathing monsterBreathing = null;
     [SerializeField] private MonsterEnd monsterEnding = null;
+    [SerializeField] private AxeScrape axeScraping = null;
+    [SerializeField] private AxeScrape axeScrapingDistant = null;
 
     [Header("Animation Events")]
     [SerializeField] private Animator desk1Animator = null;
@@ -192,6 +194,19 @@ public class SilenceTimeline : MonoBehaviour
     [SerializeField] private AudioSource desk2Throw = null;
     [SerializeField] private AudioSource radioOn = null;
     [SerializeField] private AudioSource alarmGlassBreak = null;
+    [SerializeField] private AudioSource desk1GroundLand = null;
+    [SerializeField] private AudioSource desk2GroundLand = null;
+    [SerializeField] private AudioSource smackedDesk1Land = null;
+    [SerializeField] private AudioSource smackedDesk2land = null;
+    [SerializeField] private AudioSource smackedDesk3land = null;
+    [SerializeField] private AudioSource radioTumble = null;
+    [SerializeField] private AudioSource clockLand = null;
+    [SerializeField] private AudioSource transitionLightFootStep1 = null;
+    [SerializeField] private AudioSource transitionLightFootStep2 = null;
+    [SerializeField] private AudioSource transitionLightFootStep3 = null;
+    [SerializeField] private AudioSource transitionLightFootStep4 = null;
+    [SerializeField] private AudioSource axeSound = null;
+    [SerializeField] private AudioSource axeSoundDistant = null;
 
     [Space(10)]
 
@@ -204,7 +219,11 @@ public class SilenceTimeline : MonoBehaviour
     [Header("MISC")]
     [SerializeField] private RadioPitchChange radioPitch = null;
     [SerializeField] private ClockSecondHand clockSecondHand = null;
-
+    [SerializeField] private GameObject cabinetDoorFixed = null;
+    [SerializeField] private GameObject cabinetDoorBroken = null;
+    [SerializeField] private GameObject clockFixed = null;
+    [SerializeField] private GameObject clockBroken = null;
+    [SerializeField] private RadioNeedle radioNeedle = null;
     private float experienceLength = 0f;
 
     [SerializeField] private bool showFigure = false;
@@ -235,7 +254,7 @@ public class SilenceTimeline : MonoBehaviour
         radioPitch.TurnOnRadioLight();
 
         //give the player time to look around
-        yield return new WaitForSeconds(12f);
+        yield return new WaitForSeconds(20f);
 
         //1st radio pitch change
         radioStatic.Play();
@@ -311,11 +330,17 @@ public class SilenceTimeline : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //hall heavy footsteps
+        axeSoundDistant.Play();
+        axeScrapingDistant.SetTargetVolume(0.25f, 3f);
         hallHeavyFootStep1.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep1.transform, 3f);
         yield return new WaitForSeconds(2f);
         hallHeavyFootStep2.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep2.transform, 3f);
         yield return new WaitForSeconds(1.8f);
         hallHeavyFootStep3.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep3.transform, 3f);
+        axeScrapingDistant.SetTargetVolume(0f, 3f);
         yield return new WaitForSeconds(1f);
 
         //hall groan
@@ -393,9 +418,32 @@ public class SilenceTimeline : MonoBehaviour
         //yield return new WaitForSeconds(3f);
         embResidents.Stop();
         radioMonsterScream.Play();
+        radioNeedle.StartNeedle();
         yield return new WaitForSeconds(4.4f);
         radioBroadcast.Play();
-        yield return new WaitForSeconds(21f);
+        yield return new WaitForSeconds(0.5f);
+        radioNeedle.StopNeedle();
+        yield return new WaitForSeconds(3.4f);
+        radioNeedle.StartNeedle();
+        yield return new WaitForSeconds(0.25f);
+        radioNeedle.StopNeedle();
+        yield return new WaitForSeconds(3.35f);
+        radioNeedle.StartNeedle();
+        yield return new WaitForSeconds(0.25f);
+        radioNeedle.StopNeedle();
+        yield return new WaitForSeconds(1.85f);
+        radioNeedle.StartNeedle();
+        yield return new WaitForSeconds(0.25f);
+        radioNeedle.StopNeedle();
+        yield return new WaitForSeconds(3.55f);
+        radioNeedle.StartNeedle();
+        yield return new WaitForSeconds(0.25f);
+        radioNeedle.StopNeedle();
+        yield return new WaitForSeconds(3.25f);
+        radioNeedle.StartNeedle();
+        yield return new WaitForSeconds(0.25f);
+        radioNeedle.StopNeedle();
+        yield return new WaitForSeconds(3.85f);
         radioPitch.TurnOffRadioLight();
         radioOff.Play();
 
@@ -414,16 +462,20 @@ public class SilenceTimeline : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         //hall heavy footsteps and glass break;
+        axeScrapingDistant.SetTargetVolume(0.25f, 3f);
         hallHeavyFootStep4.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep4.transform, 3f);
         yield return new WaitForSeconds(2f);
         hallHeavyFootStep5.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep5.transform, 3f);
         yield return new WaitForSeconds(1.8f);
         hallHeavyFootStep6.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep6.transform, 3f);
+        axeScrapingDistant.SetTargetVolume(0f, 3f);
         yield return new WaitForSeconds(1f);
         hallGlassBreak.Play();
         yield return new WaitForSeconds(0.25f);
         monsterGoranHall2.Play();
-
         yield return new WaitForSeconds(2.5f);
 
         //hall light footsteps
@@ -453,8 +505,15 @@ public class SilenceTimeline : MonoBehaviour
         classroomLights.StopLightFlicker();
         lightCrackle.Stop();
         doorOpen.Play();
-
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(0.5f);
+        transitionLightFootStep1.Play();
+        yield return new WaitForSeconds(0.35f);
+        transitionLightFootStep1.Play();
+        yield return new WaitForSeconds(0.32f);
+        transitionLightFootStep1.Play();
+        yield return new WaitForSeconds(0.3f);
+        transitionLightFootStep1.Play();
+        yield return new WaitForSeconds(1.03f);
         doorClose.Play();
         yield return new WaitForSeconds(0.7f);
         doorHandle.Play();
@@ -497,11 +556,16 @@ public class SilenceTimeline : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         //heavy steps to door and dont let it hear you
+        axeScrapingDistant.SetTargetVolume(0.2f, 3f);
         hallHeavyFootStep7.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep7.transform, 3f);
         yield return new WaitForSeconds(2f);
         hallHeavyFootStep8.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep8.transform, 3f);
         yield return new WaitForSeconds(1.8f);
         hallHeavyFootStep9.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep9.transform, 3f);
+        axeScrapingDistant.SetTargetVolume(0f, 3f);
         yield return new WaitForSeconds(2f);
         dontLetItHearYou.Play();
 
@@ -511,11 +575,16 @@ public class SilenceTimeline : MonoBehaviour
         yield return new WaitForSeconds(6f);
 
         //monster walk away
+        axeScrapingDistant.SetTargetVolume(0.1f, 3f);
         hallHeavyFootStep10.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep10.transform, 3f);
         yield return new WaitForSeconds(2f);
         hallHeavyFootStep11.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep11.transform, 3f);
         yield return new WaitForSeconds(1.8f);
         hallHeavyFootStep12.Play();
+        axeScrapingDistant.SetTargetTransform(hallHeavyFootStep12.transform, 3f);
+        axeScrapingDistant.SetTargetVolume(0f, 3f);
         yield return new WaitForSeconds(2f);
 
         // radio turns back on
@@ -587,7 +656,7 @@ public class SilenceTimeline : MonoBehaviour
         {
             shadowManDoor.SetActive(true);
         }
-        monsterFade.SetAlphaTarget(15 / 255f, 0.15f);
+        monsterFade.SetAlphaTarget(60 / 255f, 0.15f);
         classroomLights.StartLightFlicker();
         lightCrackle.Play();
         doorBreak.Play();
@@ -604,16 +673,25 @@ public class SilenceTimeline : MonoBehaviour
         //walk up to break radio
         roomGlassStep1.Play();
         monsterBreathing.SetTargetTransform(roomGlassStep1.transform, 3f);
+        //  axeSound.Play();
+        //  axeScraping.SetAxeToFast();
+        // axeScraping.SetTargetVolume(0.2f, 3f);
+        // axeScraping.SetTargetTransform(roomGlassStep1.transform, 3f);
         yield return new WaitForSeconds(0.65f);
         roomGlassStep2.Play();
         monsterBreathing.SetTargetTransform(roomGlassStep2.transform, 3f);
+        //  axeScraping.SetTargetTransform(roomGlassStep2.transform, 3f);
         yield return new WaitForSeconds(0.65f);
         roomHeavyFootStep1.Play();
         monsterBreathing.SetTargetTransform(roomHeavyFootStep1.transform, 3f);
+        //   axeScraping.SetTargetTransform(roomHeavyFootStep1.transform, 3f);
         yield return new WaitForSeconds(0.55f);
         roomHeavyFootStep2.Play();
         monsterBreathing.SetTargetTransform(roomHeavyFootStep2.transform, 3f);
-        yield return new WaitForSeconds(1.25f);
+        axeScraping.SetTargetTransform(roomHeavyFootStep2.transform, 3f);
+        yield return new WaitForSeconds(0.1f);
+        //   axeScraping.SetTargetVolume(0f, 3f);
+        yield return new WaitForSeconds(1.15f);
         roomMonsterGrunt9.Play();
         yield return new WaitForSeconds(0.1f);
         radio.BreakRadio();
@@ -622,7 +700,9 @@ public class SilenceTimeline : MonoBehaviour
         radioStatic.Stop();
         radioOff.Play();
         smashRadio.Play();
-        clockAudio.volume = 0.6f;
+        radioTumble.Play();
+        clockAudio.volume = 1f;
+        clockAudio.minDistance = 3f;
         monsterBreathing.SetTargetVolume(0f, 3f);
         yield return new WaitForSeconds(1.6f);
         lightCrackle.Play();
@@ -631,12 +711,12 @@ public class SilenceTimeline : MonoBehaviour
             shadowManDoor.SetActive(false);
             shadowManRadio.SetActive(true);
         }
-        monsterFade.SetAlphaTarget(15 / 255f, 0.15f);
+        monsterFade.SetAlphaTarget(60 / 255f, 0.15f);
         classroomLights.StartLightFlicker();
         roomMonsterGroan1.Play();
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.5f);
         monsterFade.SetAlphaTarget(0f, 0.75f);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.75f);
         classroomLights.StopLightFlicker();
         lightCrackle.Stop();
         monsterFade.SetAlphaTarget(0f, 0.25f);
@@ -645,27 +725,38 @@ public class SilenceTimeline : MonoBehaviour
         yield return new WaitForSeconds(4.5f);
 
         //wlak over an break clock
+        axeScraping.SetAxeToSlow();
+        axeScraping.SetTargetVolume(0.1f, 3f);
         roomHeavyFootStep3.Play();
         monsterBreathing.SetTargetTransform(roomHeavyFootStep3.transform, 3f);
+        axeScraping.SetTargetTransform(roomHeavyFootStep3.transform, 3f);
         yield return new WaitForSeconds(1.7f);
         roomHeavyFootStep4.Play();
         monsterBreathing.SetTargetTransform(roomHeavyFootStep4.transform, 3f);
+        axeScraping.SetTargetTransform(roomHeavyFootStep4.transform, 3f);
         yield return new WaitForSeconds(1.65f);
         roomGlassStep3.Play();
         monsterBreathing.SetTargetTransform(roomGlassStep3.transform, 3f);
+        axeScraping.SetTargetTransform(roomGlassStep3.transform, 3f);
         monsterBreathing.SetTargetVolume(0f, 3f);
+        axeScraping.SetTargetVolume(0f, 3f);
         yield return new WaitForSeconds(1f);
         //its a grunt swing not a groan
         roomMonsterGroan2.Play();
         monsterBreathing.SetTargetTransform(roomMonsterGroan2.transform, 3f);
         yield return new WaitForSeconds(0.5f);
         monsterBreathing.SetTargetVolume(0.3f, 1f);
+        clockFixed.SetActive(false);
+        clockBroken.SetActive(true);
         clock.SplitClock();
         clockBreak.Play();
         clockAudio.Stop();
         clockSecondHand.ClockBroke();
 
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(0.6f);
+        clockLand.Play();
+
+        yield return new WaitForSeconds(6.4f);
 
         //shake 1st desk
         desk1Lift.Play();
@@ -674,18 +765,25 @@ public class SilenceTimeline : MonoBehaviour
         yield return new WaitForSeconds(1.4f);
         desk1Shake.Play();
         yield return new WaitForSeconds(2.35f);
-        desk1Drop.Play();
-        yield return new WaitForSeconds(2f);
+        //desk1Drop.Play();
+        yield return new WaitForSeconds(0.5f);
+        desk1GroundLand.Play();
+        yield return new WaitForSeconds(1.5f);
         lightCrackle.Play();
         classroomLights.StartLightFlicker();
-        roomMonsterFootStep5.Play();
-        monsterBreathing.SetTargetTransform(roomMonsterFootStep5.transform, 3f);
+        axeScraping.SetTargetVolume(0.1f, 3f);
+        roomGlassStep3.Play();
+        monsterBreathing.SetTargetTransform(roomGlassStep3.transform, 3f);
+        axeScraping.SetTargetTransform(roomGlassStep3.transform, 3f);
         yield return new WaitForSeconds(1.7f);
         roomMonsterFootStep6.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep6.transform, 3f);
+        axeScraping.SetTargetTransform(roomMonsterFootStep6.transform, 3f);
         classroomLights.StopLightFlicker();
         lightCrackle.Stop();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
+        axeScraping.SetTargetVolume(0f, 0.5f);
+        yield return new WaitForSeconds(2.5f);
 
         //shake 2nd desk
         desk2Lift.Play();
@@ -694,15 +792,21 @@ public class SilenceTimeline : MonoBehaviour
         yield return new WaitForSeconds(1.4f);
         desk2Shake.Play();
         yield return new WaitForSeconds(2.35f);
-        desk2Drop.Play();
-        yield return new WaitForSeconds(2f);
+        //desk2Drop.Play();
+        yield return new WaitForSeconds(0.5f);
+        desk2GroundLand.Play();
+        yield return new WaitForSeconds(1.5f);
         roomMonsterFootStep7.Play();
+        axeScraping.SetTargetVolume(0.1f, 3f);
         monsterBreathing.SetTargetTransform(roomMonsterFootStep7.transform, 3f);
+        axeScraping.SetTargetTransform(roomMonsterFootStep7.transform, 3f);
         yield return new WaitForSeconds(1.7f);
         roomMonsterFootStep8.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep8.transform, 3f);
-
-        yield return new WaitForSeconds(3f);
+        axeScraping.SetTargetTransform(roomMonsterFootStep8.transform, 3f);
+        yield return new WaitForSeconds(0.5f);
+        axeScraping.SetTargetVolume(0f, 0.5f);
+        yield return new WaitForSeconds(2.5f);
 
         monsterBreathing.SetTargetTransform(bookSmack.transform, 3f);
         lightCrackle.Play();
@@ -731,11 +835,11 @@ public class SilenceTimeline : MonoBehaviour
             shadowManRadio.SetActive(false);
             shadowManDesk.SetActive(true);
         }
-        monsterFade.SetAlphaTarget(15 / 255f, 0.15f);
-        yield return new WaitForSeconds(0.75f);
+        monsterFade.SetAlphaTarget(60 / 255f, 0.15f);
+        yield return new WaitForSeconds(1.5f);
         monsterFade.SetAlphaTarget(0f, 0.75f);
 
-        yield return new WaitForSeconds(2.40f);
+        yield return new WaitForSeconds(1.65f);
         lightCrackle.Stop();
         classroomLights.StopLightFlicker();
         monsterFade.SetAlphaTarget(0f, 1f);
@@ -744,33 +848,48 @@ public class SilenceTimeline : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
 
         //walk down aisle
+        axeScraping.SetTargetVolume(0.1f, 3f);
         roomMonsterFootStep9.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep9.transform, 3f);
+
         yield return new WaitForSeconds(1.7f);
         roomMonsterFootStep10.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep10.transform, 3f);
+        axeScraping.SetTargetTransform(roomMonsterFootStep10.transform, 3f);
         monsterBreathing.SetTargetVolume(0f, 3f);
-        yield return new WaitForSeconds(1.65f);
+        yield return new WaitForSeconds(0.5f);
+        axeScraping.SetTargetVolume(0f, 0.5f);
+        yield return new WaitForSeconds(1.15f);
         roomMonsterGrunt.Play();
         yield return new WaitForSeconds(0.2f);
         roomDesk1Hit.Play();
         roomDesk2Hit.Play();
         desk1.MoveDesk();
         desk2.MoveDesk();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.6f);
+        smackedDesk1Land.Play();
+        smackedDesk2land.Play();
+        yield return new WaitForSeconds(1.4f);
         monsterBreathing.SetTargetVolume(0.3f, 1f);
+        axeScraping.SetTargetVolume(0.1f, 3f);
         roomMonsterFootStep11.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep11.transform, 3f);
+        axeScraping.SetTargetTransform(roomMonsterFootStep11.transform, 3f);
         yield return new WaitForSeconds(1.7f);
         roomMonsterFootStep12.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep12.transform, 3f);
+        axeScraping.SetTargetTransform(roomMonsterFootStep12.transform, 3f);
         monsterBreathing.SetTargetVolume(0f, 3f);
-        yield return new WaitForSeconds(1.65f);
+        yield return new WaitForSeconds(0.5f);
+        axeScraping.SetTargetVolume(0f, 0.5f);
+        yield return new WaitForSeconds(1.15f);
         roomMonsterGrunt2.Play();
         yield return new WaitForSeconds(0.2f);
         roomDesk3Hit.Play();
         desk3.MoveDesk();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
+        smackedDesk3land.Play();
+        yield return new WaitForSeconds(0.4f);
         monsterBreathing.SetTargetVolume(0.3f, 1f);
         yield return new WaitForSeconds(1f);
         monsterBreathing.SetTargetVolume(0f, 3f);
@@ -782,11 +901,11 @@ public class SilenceTimeline : MonoBehaviour
             shadowManDesk.SetActive(false);
             shadowManNearYou.SetActive(true);
         }
-        monsterFade.SetAlphaTarget(15 / 255f, 0.15f);
+        monsterFade.SetAlphaTarget(60 / 255f, 0.15f);
         classroomLights.StartLightFlicker();
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.5f);
         monsterFade.SetAlphaTarget(0f, 0.75f);
-        yield return new WaitForSeconds(2.45f);
+        yield return new WaitForSeconds(1.7f);
         lightCrackle.Stop();
         classroomLights.StopLightFlicker();
         monsterFade.SetAlphaTarget(0f, 0.25f);
@@ -813,30 +932,41 @@ public class SilenceTimeline : MonoBehaviour
         roomMonsterGroan5.Play();
         lightCrackle.Play();
         classroomLights.StartLightFlicker();
-        yield return new WaitForSeconds(2.1f);
-        lightCrackle.Stop();
-        classroomLights.StopLightFlicker();
+        yield return new WaitForSeconds(1f);
+        //  axeScraping.SetAxeToFast();
+        //  axeScraping.SetTargetVolume(0.1f, 3f);
         monsterBreathing.SetTargetVolume(0.3f, 1f);
         monsterBreathing.SetTargetTransform(roomMonsterFootStep13.transform, 3f);
+        //  axeScraping.SetTargetTransform(roomMonsterFootStep13.transform, 3f);
         roomMonsterFootStep13.Play();
         yield return new WaitForSeconds(0.4f);
         roomMonsterFootStep14.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep14.transform, 3f);
+        // axeScraping.SetTargetTransform(roomMonsterFootStep14.transform, 3f);
         yield return new WaitForSeconds(0.45f);
         roomMonsterFootStep15.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep15.transform, 3f);
+        // axeScraping.SetTargetTransform(roomMonsterFootStep15.transform, 3f);
         yield return new WaitForSeconds(0.4f);
+        lightCrackle.Stop();
+        classroomLights.StopLightFlicker();
         roomMonsterFootStep16.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep16.transform, 3f);
+        // axeScraping.SetTargetTransform(roomMonsterFootStep16.transform, 3f);
         yield return new WaitForSeconds(0.45f);
         roomMonsterFootStep17.Play();
         monsterBreathing.SetTargetTransform(roomMonsterFootStep17.transform, 3f);
+        // axeScraping.SetTargetTransform(roomMonsterFootStep17.transform, 3f);
         monsterBreathing.SetTargetVolume(0f, 3f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        //  axeScraping.SetTargetVolume(0f, 1f);
+        yield return new WaitForSeconds(0.5f);
 
         roomMonsterGrunt3.Play();
         yield return new WaitForSeconds(0.25f);
         cabinetBreakSound.Play();
+        cabinetDoorFixed.SetActive(false);
+        cabinetDoorBroken.SetActive(true);
         cabinetDoor.BreakCabinet();
         yield return new WaitForSeconds(1f);
         roomMonsterGrunt4.Play();
@@ -862,12 +992,12 @@ public class SilenceTimeline : MonoBehaviour
             shadowManNearYou.SetActive(false);
             shadowManFire.SetActive(true);
         }
-        monsterFade.SetAlphaTarget(10 / 255f, 0.15f);
+        monsterFade.SetAlphaTarget(40 / 255f, 0.15f);
         classroomLights.StartLightFlicker();
         roomMonsterGroan6.Play();
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.5f);
         monsterFade.SetAlphaTarget(0f, 0.75f);
-        yield return new WaitForSeconds(3.2f);
+        yield return new WaitForSeconds(2.55f);
         lightCrackle.Stop();
         classroomLights.StopLightFlicker();
         monsterFade.SetAlphaTarget(0f, 0.25f);
@@ -889,12 +1019,12 @@ public class SilenceTimeline : MonoBehaviour
             shadowManFire.SetActive(false);
             shadowManFire2.SetActive(true);
         }
-        monsterFade.SetAlphaTarget(10 / 255f, 0.15f);
+        monsterFade.SetAlphaTarget(40 / 255f, 0.15f);
         classroomLights.StartLightFlicker();
         roomMonsterGroan7.Play();
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.5f);
         monsterFade.SetAlphaTarget(0f, 0.75f);
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(0.5f);
         lightCrackle.Stop();
         monsterFade.SetAlphaTarget(0f, 0.25f);
         classroomLights.StopLightFlicker();
@@ -971,7 +1101,7 @@ public class SilenceTimeline : MonoBehaviour
         {
             shadowManFire2.SetActive(false);
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         monsterEnding.gameObject.SetActive(true);
 
 

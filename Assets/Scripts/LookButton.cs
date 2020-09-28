@@ -143,4 +143,11 @@ public class LookButton : LookTarget
         }
     }
 
+    public void SetAsPressed()
+    {
+        FillImage.fillAmount = 1f;
+        buttonPressed = true;
+        isPressable = false;
+    }
+
 }

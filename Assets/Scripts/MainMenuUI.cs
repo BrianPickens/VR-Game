@@ -90,6 +90,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void ShowLevelSelect()
     {
+        LandingScreen.EndLookOnButtons();
         LevelSelect.FadeInLevelSelect();
     }
 
@@ -106,6 +107,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void ShowCreditsPage()
     {
+        LandingScreen.EndLookOnButtons();
         MenuCredits.BlockButtons();
         MenuCredits.FadeInPopUp(MenuCredits.MakeButtonsPressable);
     }

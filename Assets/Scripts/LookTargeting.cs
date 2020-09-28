@@ -9,9 +9,14 @@ public class LookTargeting : MonoBehaviour
 
     private LookTarget currentLookTarget = null;
 
+    private bool canTarget = true;
+
     private void Update()
     {
-        CheckForLookTarget();
+        if (canTarget)
+        {
+            CheckForLookTarget();
+        }
     }
 
     //Check to see if we are looking at anything interactive
@@ -59,7 +64,15 @@ public class LookTargeting : MonoBehaviour
                 reticle.StoppedLookingAtTarget();
             }
         }
+    }
 
+    public void DisableTargeting()
+    {
+        canTarget = false;
+    }
 
+    public void EnableTargeting()
+    {
+        canTarget = true;
     }
 }
