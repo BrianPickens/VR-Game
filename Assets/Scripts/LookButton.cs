@@ -32,12 +32,12 @@ public class LookButton : LookTarget
         myAudioSource.Play();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         MoveFill();
     }
 
-    private void MoveFill()
+    protected void MoveFill()
     {
         if (!buttonPressed && isPressable)
         {

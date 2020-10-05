@@ -69,10 +69,12 @@ public class LookTargeting : MonoBehaviour
     public void DisableTargeting()
     {
         canTarget = false;
+        reticle.DisplayReticle(false);
     }
 
     public void EnableTargeting()
     {
         canTarget = true;
+        reticle.DisplayReticle(true);
     }
 }

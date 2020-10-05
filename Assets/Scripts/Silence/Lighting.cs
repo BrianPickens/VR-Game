@@ -24,13 +24,20 @@ public class Lighting : MonoBehaviour
     [SerializeField]
     private float targetRange = 55f;
 
+    [SerializeField]
+    private float targetIntensity = 0f;
+
+    [SerializeField]
+    private float lightIntensityChangeSpeed = 30f;
+
+    private void Start()
+    {
+        targetIntensity = primaryLights[0].intensity;
+        
+    }
+
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    flickerLights = !flickerLights;
-        //}
-
         //if (Input.GetKeyDown(KeyCode.Alpha2))
         //{
         //    SetLightRange(10f,30f);
@@ -50,6 +57,17 @@ public class Lighting : MonoBehaviour
                 {
                     float change = (intensity - flickerIntensity) * 2;
                     primaryLights[i].intensity = intensity - change;
+                }
+            }
+        }
+
+        if (!flickerLights)
+        {
+            if (Mathf.Abs(primaryLights[0].intensity - targetIntensity) > Mathf.Epsilon)
+            {
+                for (int i = 0; i < primaryLights.Count; i++)
+                {
+                    primaryLights[i].intensity = Mathf.MoveTowards(primaryLights[i].intensity, targetIntensity, Time.deltaTime * lightIntensityChangeSpeed);
                 }
             }
         }
@@ -88,6 +106,24 @@ public class Lighting : MonoBehaviour
         lightChangeSpeed = _changeSpeed;
     }
 
+    public void ChangeLightRangeByAmount(float _rangeChange, float _changeSpeed)
+    {
+        targetRange += _rangeChange;
+        lightChangeSpeed = _changeSpeed;
+    }
+
+    public void SetLightIntensity(float _intensity, float _changeSpeed)
+    {
+        targetIntensity = _intensity;
+        lightIntensityChangeSpeed = _changeSpeed;
+    }
+
+    public void ChangeLightIntensityByAmount(float _intensityChange, float _changeSpeed)
+    {
+        targetIntensity += _intensityChange;
+        lightIntensityChangeSpeed = _changeSpeed;
+    }
+
     public void TurnOffLights()
     {
         targetRange = 0f;
@@ -111,8 +147,4 @@ public class Lighting : MonoBehaviour
             }
         }
     }
-
-
-
-
-    }
+}

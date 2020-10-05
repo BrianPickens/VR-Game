@@ -35,4 +35,8 @@ public class Reticle : MonoBehaviour
         }
     }
 
+    public void DisplayReticle(bool _display)
+    {
+        gameObject.SetActive(_display);
+    }
 }
