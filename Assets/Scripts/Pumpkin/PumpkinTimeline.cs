@@ -10,9 +10,11 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private float lightRangeChange = 5f;
     [SerializeField] private float musicVolumeChange = 0.1f;
     [SerializeField] private float heartBeatVolumeChange = 0.1f;
+    [SerializeField] private float heartBeatPitchChange = 0.4f;
 
     [SerializeField] private IntroPopUpText interactionTutorial = null;
 
+    [Header("Trigger Buttons")]
     [SerializeField] private TriggerButton candleLeftButton = null;
     [SerializeField] private TriggerButton candleRightButton = null;
 
@@ -23,7 +25,19 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private TriggerButton middleLockButton = null;
     [SerializeField] private TriggerButton bottomLockButton = null;
 
-    private int triggerCount = 0;
+    [Header("Animators")]
+    [SerializeField] private Animator lockCoverAnimator = null;
+
+    [Header("Objects")]
+    [SerializeField] private GameObject rightFlameThrower = null;
+    [SerializeField] private GameObject leftFlameThrower = null;
+
+    [Header("Misc")]
+    [SerializeField] private BounceRandom rightLightBounce = null;
+    [SerializeField] private BounceRandom leftLigthBounce = null;
+
+    [SerializeField] private Lighting rightLight = null;
+    [SerializeField] private Lighting leftLight = null;
 
     [Header("Sound Sources")]
     [SerializeField] private SoundSource backgroundMusic = null;
@@ -41,9 +55,16 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private SoundSource knock4 = null;
     [SerializeField] private SoundSource knock5 = null;
     [SerializeField] private SoundSource knock6 = null;
+    [SerializeField] private SoundSource lockCoverUnlock = null;
+    [SerializeField] private SoundSource lockCoverSqueak = null;
+    [SerializeField] private SoundSource lockCoverLand = null;
     [SerializeField] private SoundSource topLockUnLock = null;
     [SerializeField] private SoundSource middleLockUnlock = null;
     [SerializeField] private SoundSource bottomLockUnlock = null;
+    [SerializeField] private SoundSource woodCreak = null;
+    [SerializeField] private SoundSource woodScratching = null;
+
+    private int triggerCount = 0;
 
     private void Start()
     {
@@ -74,9 +95,9 @@ public class PumpkinTimeline : MonoBehaviour
         candleLeftButton.InitializeButton(ObjectTriggered);
         candleLeftButton.AddCallback(IncreasePlayerLight);
         candleLeftButton.AddCallback(IncreaseBackgroundMusic);
-        candleLeftButton.AddCallback(() => 
+        candleLeftButton.AddCallback(() =>
         {
-            candleLeftStartAudio.PlayAudio(); 
+            candleLeftStartAudio.PlayAudio();
         });
         candleLeftButton.AddCallback(() =>
         {
@@ -87,9 +108,9 @@ public class PumpkinTimeline : MonoBehaviour
         candleRightButton.InitializeButton(ObjectTriggered);
         candleRightButton.AddCallback(IncreasePlayerLight);
         candleRightButton.AddCallback(IncreaseBackgroundMusic);
-        candleRightButton.AddCallback(() => 
+        candleRightButton.AddCallback(() =>
         {
-            candleRightStartAudio.PlayAudio(); 
+            candleRightStartAudio.PlayAudio();
         });
         candleRightButton.AddCallback(() =>
         {
@@ -113,7 +134,7 @@ public class PumpkinTimeline : MonoBehaviour
 
         if (triggerCount == 7)
         {
-            ReleasePumpkin();
+            StartCoroutine(ReleasePumpkin());
         }
     }
 
@@ -150,6 +171,7 @@ public class PumpkinTimeline : MonoBehaviour
     }
     private IEnumerator RevealLockTriggers()
     {
+        targeting.DisableTargeting();
 
         yield return new WaitForSeconds(5f);
         knock4.PlayAudio();
@@ -157,13 +179,22 @@ public class PumpkinTimeline : MonoBehaviour
         knock5.PlayAudio();
         yield return new WaitForSeconds(2f);
         knock6.PlayAudio();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
-        targeting.DisableTargeting();
+        lockCoverUnlock.PlayAudio();
+        lockCoverAnimator.SetTrigger("Event2");
+        yield return new WaitForSeconds(0.6f);
+        lockCoverSqueak.PlayAudio();
+        yield return new WaitForSeconds(0.9f);
+        lockCoverLand.PlayAudio();
+
+
         yield return new WaitForSeconds(1f);
+
         topLockButton.InitializeButton(ObjectTriggered);
         topLockButton.AddCallback(IncreaseBackgroundMusic);
         topLockButton.AddCallback(IncreaseHeartBeatSound);
+        topLockButton.AddCallback(IncreaseHeartBeatPitch);
         topLockButton.AddCallback(() =>
         {
             topLockUnLock.PlayAudio();
@@ -172,6 +203,7 @@ public class PumpkinTimeline : MonoBehaviour
         middleLockButton.InitializeButton(ObjectTriggered);
         middleLockButton.AddCallback(IncreaseBackgroundMusic);
         middleLockButton.AddCallback(IncreaseHeartBeatSound);
+        middleLockButton.AddCallback(IncreaseHeartBeatPitch);
         middleLockButton.AddCallback(() =>
         {
             middleLockUnlock.PlayAudio();
@@ -180,16 +212,40 @@ public class PumpkinTimeline : MonoBehaviour
         bottomLockButton.InitializeButton(ObjectTriggered);
         bottomLockButton.AddCallback(IncreaseBackgroundMusic);
         bottomLockButton.AddCallback(IncreaseHeartBeatSound);
+        bottomLockButton.AddCallback(IncreaseHeartBeatPitch);
         bottomLockButton.AddCallback(() =>
         {
             bottomLockUnlock.PlayAudio();
         });
         targeting.EnableTargeting();
-    }       
+    }
 
-    private void ReleasePumpkin()
+    private IEnumerator ReleasePumpkin()
     {
+        yield return new WaitForSeconds(1f);
+        heartBeatSlow.SetTargetPitch(3f, 0.1f);
+        heartBeatSlow.SetTargetVolume(1f, 0.1f);
+        heartBeatSlow.SetTargetMinDistance(5f, 0.4f);
+        yield return new WaitForSeconds(10f);
+        heartBeatSlow.StopAudio();
+        backgroundMusic.StopAudio();
+        yield return new WaitForSeconds(3f);
+        woodScratching.PlayAudio();
+        yield return new WaitForSeconds(4f);
+        woodCreak.PlayAudio();
+        yield return new WaitForSeconds(2.5f);
+        rightFlameThrower.SetActive(true);
+        leftFlameThrower.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        rightLightBounce.SetSpeeds(0.5f, 0.7f);
+        leftLigthBounce.SetSpeeds(0.5f, 0.7f);
+        rightLight.SetLightRange(30f, 5f);
+        leftLight.SetLightRange(30f, 5f);
+        rightLight.SetFlickerIntensity(3f);
+        leftLight.SetFlickerIntensity(3f);
+ 
 
+        yield return null;
     }
 
     private void IncreaseBackgroundMusic()
@@ -205,6 +261,11 @@ public class PumpkinTimeline : MonoBehaviour
     private void IncreaseHeartBeatSound()
     {
         heartBeatSlow.ChangeVolumeByAmount(heartBeatVolumeChange, 1f);
+    }
+
+    private void IncreaseHeartBeatPitch()
+    {
+        heartBeatSlow.ChangePitchByAmount(heartBeatPitchChange, 1f);
     }
 
 

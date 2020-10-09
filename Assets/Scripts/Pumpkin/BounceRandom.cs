@@ -60,4 +60,10 @@ public class BounceRandom : MonoBehaviour
         targetVector = new Vector3(myTransform.position.x, targetY, myTransform.position.z);
     }
 
+    public void SetSpeeds(float _minSpeed, float _maxSpeed)
+    {
+        minSpeed = _minSpeed;
+        maxSpeed = _maxSpeed;
+    }
+
 }

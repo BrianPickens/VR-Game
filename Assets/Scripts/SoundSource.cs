@@ -14,6 +14,12 @@ public class SoundSource : MonoBehaviour
 
     private float volumeChangeSpeed = 1f;
 
+    private float targetPitch = 1f;
+    private float pitchChangeSpeed = 1f;
+
+    private float targetMinDistance = 1f;
+    private float minDistanceChangeSpeed = 1f;
+
     private void Awake()
     {
         myTransform = GetComponent<Transform>();
@@ -23,6 +29,9 @@ public class SoundSource : MonoBehaviour
     private void Start()
     {
         targetTransform = myTransform;
+        targetPitch = myAudioSource.pitch;
+        targetVolume = myAudioSource.volume;
+        targetMinDistance = myAudioSource.minDistance;
     }
 
     private void Update()
@@ -36,6 +45,17 @@ public class SoundSource : MonoBehaviour
         {
             myAudioSource.volume = Mathf.MoveTowards(myAudioSource.volume, targetVolume, Time.deltaTime * volumeChangeSpeed);
         }
+
+        if (Mathf.Abs(myAudioSource.pitch - targetPitch) > Mathf.Epsilon)
+        {
+            myAudioSource.pitch = Mathf.MoveTowards(myAudioSource.pitch, targetPitch, Time.deltaTime * pitchChangeSpeed);
+        }
+
+        if (Mathf.Abs(myAudioSource.minDistance - targetMinDistance) > Mathf.Epsilon)
+        {
+            myAudioSource.minDistance = Mathf.MoveTowards(myAudioSource.minDistance, targetMinDistance, Time.deltaTime * minDistanceChangeSpeed);
+        }
+
     }
 
     public void SetTargetTransform(Transform _target, float _moveSpeed)
@@ -58,9 +78,40 @@ public class SoundSource : MonoBehaviour
         volumeChangeSpeed = _changeSpeed;
     }
 
+    public void SetTargetPitch(float _targetPitch, float _changeSpeed)
+    {
+        targetPitch = _targetPitch;
+        targetPitch = Mathf.Clamp(targetPitch, 0f, 3f);
+        pitchChangeSpeed = _changeSpeed;
+    }
+
+    public void ChangePitchByAmount(float _amount, float _changeSpeed)
+    {
+        targetPitch += _amount;
+        targetPitch = Mathf.Clamp(targetPitch, 0f, 3f);
+        pitchChangeSpeed = _changeSpeed;
+    }
+
+    public void SetTargetMinDistance(float _targetMinDistance, float _changeSpeed)
+    {
+        targetMinDistance = _targetMinDistance;
+        minDistanceChangeSpeed = _changeSpeed;
+    }
+
+    public void ChangeMinDistanceByAmount(float _amount, float _changeSpeed)
+    {
+        targetMinDistance += _amount;
+        minDistanceChangeSpeed = _changeSpeed;
+    }
+
     public void PlayAudio()
     {
         myAudioSource.Play();
+    }
+
+    public void StopAudio()
+    {
+        myAudioSource.Stop();
     }
 
 }

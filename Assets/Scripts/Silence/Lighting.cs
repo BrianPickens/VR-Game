@@ -112,6 +112,11 @@ public class Lighting : MonoBehaviour
         lightChangeSpeed = _changeSpeed;
     }
 
+    public void SetFlickerIntensity(float _flickerIntensity)
+    {
+        flickerIntensity = _flickerIntensity;
+    }
+
     public void SetLightIntensity(float _intensity, float _changeSpeed)
     {
         targetIntensity = _intensity;
