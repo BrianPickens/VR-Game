@@ -18,8 +18,18 @@ public class TriggeredObject : MonoBehaviour
     [SerializeField] private int animationNum = 0;
     [SerializeField] private Animator myAnimator = null;
 
+    [Header("Sprite Renderer")]
+    [SerializeField] private bool enableSpriteRenderer = false;
+    [SerializeField] private SpriteRenderer mySpriteRender = null;
+
+    [Header("Audio Source")]
+    [SerializeField] private bool playAudio = false;
+    [SerializeField] private float audioDelay = 0f;
+    [SerializeField] private AudioSource myAudioSource = null;
+
     public void TriggerResponse()
     {
+
         if (turnOnObject)
         {
             myGameobject.SetActive(true);
@@ -56,6 +66,22 @@ public class TriggeredObject : MonoBehaviour
             }
         }
 
+        if (enableSpriteRenderer)
+        {
+            mySpriteRender.enabled = true;
+        }
+
+        if (playAudio)
+        {
+            Invoke("PlayAudio", audioDelay);
+        }
+
     }
 
-}
+    private void PlayAudio()
+    {
+        myAudioSource.Play();
+    }
+
+
+    }

@@ -11,7 +11,7 @@ public class LockRemove : MonoBehaviour
         myRigidbody.isKinematic = false;
         myRigidbody.useGravity = true;
 
-        myRigidbody.AddForce(Vector3.forward * 3f, ForceMode.Impulse);
+        myRigidbody.AddForce(Vector3.forward * 1f, ForceMode.Impulse);
         myRigidbody.AddTorque(Vector3.back * 2f, ForceMode.Impulse);
     }
 }
