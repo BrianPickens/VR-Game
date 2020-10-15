@@ -31,6 +31,12 @@ public class PumpkinTimeline : MonoBehaviour
     [Header("Objects")]
     [SerializeField] private GameObject rightFlameThrower = null;
     [SerializeField] private GameObject leftFlameThrower = null;
+    [SerializeField] private GameObject rightFlame = null;
+    [SerializeField] private GameObject leftFlame = null;
+
+    [Header("Particle System")]
+    [SerializeField] private ParticleSystem rightFlameParticleSystem = null;
+    [SerializeField] private ParticleSystem leftFlameParticleSystem = null;
 
     [Header("Misc")]
     [SerializeField] private BounceRandom rightLightBounce = null;
@@ -63,6 +69,9 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private SoundSource bottomLockUnlock = null;
     [SerializeField] private SoundSource woodCreak = null;
     [SerializeField] private SoundSource woodScratching = null;
+    [SerializeField] private SoundSource chestOpening = null;
+    [SerializeField] private SoundSource rightFlameThrowerAudio = null;
+    [SerializeField] private SoundSource leftFlameThrowerAudio = null;
 
     private int triggerCount = 0;
 
@@ -227,25 +236,47 @@ public class PumpkinTimeline : MonoBehaviour
         heartBeatSlow.SetTargetVolume(1f, 0.1f);
         heartBeatSlow.SetTargetMinDistance(5f, 0.4f);
         yield return new WaitForSeconds(10f);
-        heartBeatSlow.StopAudio();
-        backgroundMusic.StopAudio();
+        heartBeatSlow.SetTargetVolume(0f, 100f);
+        backgroundMusic.SetTargetVolume(0f, 100f);
+        candleRightAudio.SetTargetVolume(0f, 100f);
+        candleLeftAudio.SetTargetVolume(0f, 100f);
+
+        //heartBeatSlow.StopAudio();
+        //backgroundMusic.StopAudio();
+        //candleRightAudio.StopAudio();
+        //candleLeftAudio.StopAudio();
+        rightFlameParticleSystem.Stop();
+        leftFlameParticleSystem.Stop();
+        yield return new WaitForSeconds(0.2f);
+        rightLight.SetLightRange(0, 10f);
+        leftLight.SetLightRange(0, 10f);
+        playerLight.ChangeLightRangeByAmount(-lightRangeChange * 2, 5f);
         yield return new WaitForSeconds(3f);
         woodScratching.PlayAudio();
         yield return new WaitForSeconds(4f);
         woodCreak.PlayAudio();
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(4f);
         rightFlameThrower.SetActive(true);
         leftFlameThrower.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         rightLightBounce.SetSpeeds(0.5f, 0.7f);
         leftLigthBounce.SetSpeeds(0.5f, 0.7f);
-        rightLight.SetLightRange(30f, 5f);
-        leftLight.SetLightRange(30f, 5f);
+        rightLight.SetLightRange(30f, 10f);
+        leftLight.SetLightRange(30f, 10f);
         rightLight.SetFlickerIntensity(3f);
         leftLight.SetFlickerIntensity(3f);
- 
 
-        yield return null;
+        //playe fire sound
+
+        yield return new WaitForSeconds(5f);
+        knock4.PlayAudio();
+        yield return new WaitForSeconds(2f);
+        knock5.PlayAudio();
+        yield return new WaitForSeconds(2f);
+        chestOpening.PlayAudio();
+
+
+
     }
 
     private void IncreaseBackgroundMusic()
