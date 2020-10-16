@@ -70,8 +70,12 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private SoundSource woodCreak = null;
     [SerializeField] private SoundSource woodScratching = null;
     [SerializeField] private SoundSource chestOpening = null;
+    [SerializeField] private SoundSource scaryEscapeSound = null;
     [SerializeField] private SoundSource rightFlameThrowerAudio = null;
     [SerializeField] private SoundSource leftFlameThrowerAudio = null;
+    [SerializeField] private SoundSource rightFlameThrowerStart = null;
+    [SerializeField] private SoundSource leftFlameThrowerStart = null;
+    [SerializeField] private SoundSource creepyFireStop = null;
 
     private int triggerCount = 0;
 
@@ -235,7 +239,9 @@ public class PumpkinTimeline : MonoBehaviour
         heartBeatSlow.SetTargetPitch(3f, 0.1f);
         heartBeatSlow.SetTargetVolume(1f, 0.1f);
         heartBeatSlow.SetTargetMinDistance(5f, 0.4f);
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(9.4f);
+        creepyFireStop.PlayAudio();
+        yield return new WaitForSeconds(0.6f);
         heartBeatSlow.SetTargetVolume(0f, 100f);
         backgroundMusic.SetTargetVolume(0f, 100f);
         candleRightAudio.SetTargetVolume(0f, 100f);
@@ -251,6 +257,7 @@ public class PumpkinTimeline : MonoBehaviour
         rightLight.SetLightRange(0, 10f);
         leftLight.SetLightRange(0, 10f);
         playerLight.ChangeLightRangeByAmount(-lightRangeChange * 2, 5f);
+
         yield return new WaitForSeconds(3f);
         woodScratching.PlayAudio();
         yield return new WaitForSeconds(4f);
@@ -259,6 +266,10 @@ public class PumpkinTimeline : MonoBehaviour
         rightFlameThrower.SetActive(true);
         leftFlameThrower.SetActive(true);
         yield return new WaitForSeconds(0.1f);
+        rightFlameThrowerStart.PlayAudio();
+        leftFlameThrowerStart.PlayAudio();
+        rightFlameThrowerAudio.PlayAudio();
+        leftFlameThrowerAudio.PlayAudio();
         rightLightBounce.SetSpeeds(0.5f, 0.7f);
         leftLigthBounce.SetSpeeds(0.5f, 0.7f);
         rightLight.SetLightRange(30f, 10f);
@@ -273,8 +284,8 @@ public class PumpkinTimeline : MonoBehaviour
         yield return new WaitForSeconds(2f);
         knock5.PlayAudio();
         yield return new WaitForSeconds(2f);
-        chestOpening.PlayAudio();
-
+        //chestOpening.PlayAudio();
+        scaryEscapeSound.PlayAudio();
 
 
     }
