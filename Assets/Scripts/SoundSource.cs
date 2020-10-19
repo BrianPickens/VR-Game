@@ -109,6 +109,11 @@ public class SoundSource : MonoBehaviour
         myAudioSource.Play();
     }
 
+    public void PlayAudioWithDelay(float _delay)
+    {
+        Invoke("PlayAudio", _delay);
+    }
+
     public void StopAudio()
     {
         myAudioSource.Stop();

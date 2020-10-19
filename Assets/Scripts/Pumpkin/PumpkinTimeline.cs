@@ -37,6 +37,8 @@ public class PumpkinTimeline : MonoBehaviour
     [Header("Particle System")]
     [SerializeField] private ParticleSystem rightFlameParticleSystem = null;
     [SerializeField] private ParticleSystem leftFlameParticleSystem = null;
+    [SerializeField] private ParticleSystem rightFlameThrowerParticleSystem = null;
+    [SerializeField] private ParticleSystem leftFlameThrowerParticleSystem = null;
 
     [Header("Misc")]
     [SerializeField] private BounceRandom rightLightBounce = null;
@@ -76,6 +78,7 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private SoundSource rightFlameThrowerStart = null;
     [SerializeField] private SoundSource leftFlameThrowerStart = null;
     [SerializeField] private SoundSource creepyFireStop = null;
+    [SerializeField] private SoundSource chestOpenAll = null;
 
     private int triggerCount = 0;
 
@@ -210,7 +213,7 @@ public class PumpkinTimeline : MonoBehaviour
         topLockButton.AddCallback(IncreaseHeartBeatPitch);
         topLockButton.AddCallback(() =>
         {
-            topLockUnLock.PlayAudio();
+            topLockUnLock.PlayAudioWithDelay(0.25f);
         });
         yield return new WaitForSeconds(1f);
         middleLockButton.InitializeButton(ObjectTriggered);
@@ -219,7 +222,7 @@ public class PumpkinTimeline : MonoBehaviour
         middleLockButton.AddCallback(IncreaseHeartBeatPitch);
         middleLockButton.AddCallback(() =>
         {
-            middleLockUnlock.PlayAudio();
+            middleLockUnlock.PlayAudioWithDelay(0.25f);
         });
         yield return new WaitForSeconds(1f);
         bottomLockButton.InitializeButton(ObjectTriggered);
@@ -228,7 +231,7 @@ public class PumpkinTimeline : MonoBehaviour
         bottomLockButton.AddCallback(IncreaseHeartBeatPitch);
         bottomLockButton.AddCallback(() =>
         {
-            bottomLockUnlock.PlayAudio();
+            bottomLockUnlock.PlayAudioWithDelay(0.25f);
         });
         targeting.EnableTargeting();
     }
@@ -241,6 +244,11 @@ public class PumpkinTimeline : MonoBehaviour
         heartBeatSlow.SetTargetMinDistance(5f, 0.4f);
         yield return new WaitForSeconds(9.4f);
         creepyFireStop.PlayAudio();
+        rightFlameParticleSystem.Stop();
+        leftFlameParticleSystem.Stop();
+        rightLight.SetLightRange(0, 10f);
+        leftLight.SetLightRange(0, 10f);
+        playerLight.ChangeLightRangeByAmount(-lightRangeChange * 2, 10f);
         yield return new WaitForSeconds(0.6f);
         heartBeatSlow.SetTargetVolume(0f, 100f);
         backgroundMusic.SetTargetVolume(0f, 100f);
@@ -251,14 +259,9 @@ public class PumpkinTimeline : MonoBehaviour
         //backgroundMusic.StopAudio();
         //candleRightAudio.StopAudio();
         //candleLeftAudio.StopAudio();
-        rightFlameParticleSystem.Stop();
-        leftFlameParticleSystem.Stop();
-        yield return new WaitForSeconds(0.2f);
-        rightLight.SetLightRange(0, 10f);
-        leftLight.SetLightRange(0, 10f);
-        playerLight.ChangeLightRangeByAmount(-lightRangeChange * 2, 5f);
 
-        yield return new WaitForSeconds(3f);
+
+        yield return new WaitForSeconds(5f);
         woodScratching.PlayAudio();
         yield return new WaitForSeconds(4f);
         woodCreak.PlayAudio();
@@ -284,9 +287,19 @@ public class PumpkinTimeline : MonoBehaviour
         yield return new WaitForSeconds(2f);
         knock5.PlayAudio();
         yield return new WaitForSeconds(2f);
-        //chestOpening.PlayAudio();
-        scaryEscapeSound.PlayAudio();
-
+        chestOpening.PlayAudio();
+        rightFlameThrowerParticleSystem.Stop();
+        leftFlameThrowerParticleSystem.Stop();
+        rightLight.SetLightRange(0, 25f);
+        leftLight.SetLightRange(0, 25);
+        playerLight.SetLightRange(0, 25f);
+        rightLightBounce.SetSpeeds(0f, 0f);
+        leftLigthBounce.SetSpeeds(0f, 0f);
+        yield return new WaitForSeconds(0.6f);
+        leftFlameThrowerAudio.StopAudio();
+        rightFlameThrowerAudio.StopAudio();
+        yield return new WaitForSeconds(2f);
+        chestOpenAll.PlayAudio();
 
     }
 
