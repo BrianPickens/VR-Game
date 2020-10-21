@@ -25,8 +25,12 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private TriggerButton middleLockButton = null;
     [SerializeField] private TriggerButton bottomLockButton = null;
 
+    [SerializeField] private TriggerButton candleLeftButtonSecond = null;
+    [SerializeField] private TriggerButton candleRightButtonSecond = null;
+
     [Header("Animators")]
     [SerializeField] private Animator lockCoverAnimator = null;
+    [SerializeField] private Animator chestAnimator = null;
 
     [Header("Objects")]
     [SerializeField] private GameObject rightFlameThrower = null;
@@ -79,6 +83,7 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private SoundSource leftFlameThrowerStart = null;
     [SerializeField] private SoundSource creepyFireStop = null;
     [SerializeField] private SoundSource chestOpenAll = null;
+    [SerializeField] private SoundSource creepyPumpkinBGMusic = null;
 
     private int triggerCount = 0;
 
@@ -151,6 +156,11 @@ public class PumpkinTimeline : MonoBehaviour
         if (triggerCount == 7)
         {
             StartCoroutine(ReleasePumpkin());
+        }
+
+        if (triggerCount == 9)
+        {
+            StartCoroutine(RevealPumpkins());
         }
     }
 
@@ -238,6 +248,7 @@ public class PumpkinTimeline : MonoBehaviour
 
     private IEnumerator ReleasePumpkin()
     {
+        targeting.DisableTargeting();
         yield return new WaitForSeconds(1f);
         heartBeatSlow.SetTargetPitch(3f, 0.1f);
         heartBeatSlow.SetTargetVolume(1f, 0.1f);
@@ -288,6 +299,7 @@ public class PumpkinTimeline : MonoBehaviour
         knock5.PlayAudio();
         yield return new WaitForSeconds(2f);
         chestOpening.PlayAudio();
+        chestAnimator.SetTrigger("Event2");
         rightFlameThrowerParticleSystem.Stop();
         leftFlameThrowerParticleSystem.Stop();
         rightLight.SetLightRange(0, 25f);
@@ -298,9 +310,56 @@ public class PumpkinTimeline : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         leftFlameThrowerAudio.StopAudio();
         rightFlameThrowerAudio.StopAudio();
-        yield return new WaitForSeconds(2f);
         chestOpenAll.PlayAudio();
+        yield return new WaitForSeconds(5f);
+        chestAnimator.SetTrigger("Event3");
+        creepyPumpkinBGMusic.PlayAudio();
+        creepyPumpkinBGMusic.SetTargetVolume(0.25f, 0.005f);
+        backgroundMusic.StopAudio();
+        yield return new WaitForSeconds(1f);
+        backgroundMusic.PlayAudio();
+        backgroundMusic.SetTargetVolume(0.4f, 0.005f);
+        //play pumpkin stand and step forward animation
+        //star making smaller pumpkins appear and walk in
 
+        yield return new WaitForSeconds(10f);
+
+        //show the candle trigger buttons
+        candleLeftButtonSecond.InitializeButton(ObjectTriggered);
+        candleLeftButtonSecond.AddCallback(() =>
+        {
+            backgroundMusic.ChangeVolumeByAmount(musicVolumeChange, 0.25f);
+            playerLight.ChangeLightRangeByAmount(5f, 10f);
+            candleLeftStartAudio.PlayAudio();
+            leftLight.SetLightRange(10f, 25f);
+            leftLigthBounce.SetSpeeds(0.1f, 0.2f);
+            leftFlameParticleSystem.Play();
+            candleLeftAudio.SetTargetVolume(0.6f, 10f);
+            candleLeftAudio.PlayAudio();
+        });
+
+        yield return new WaitForSeconds(1f);
+
+        candleRightButtonSecond.InitializeButton(ObjectTriggered);
+        candleRightButtonSecond.AddCallback(() =>
+        {
+            backgroundMusic.ChangeVolumeByAmount(musicVolumeChange, 0.25f);
+            playerLight.ChangeLightRangeByAmount(5f, 10f);
+            candleRightStartAudio.PlayAudio();
+            rightLight.SetLightRange(10f, 25f);
+            rightLightBounce.SetSpeeds(0.1f, 0.2f);
+            rightFlameParticleSystem.Play();
+            candleRightAudio.SetTargetVolume(0.6f, 10f);
+            candleRightAudio.PlayAudio();
+        });
+
+        targeting.EnableTargeting();
+    }
+
+    private IEnumerator RevealPumpkins()
+    {
+        creepyPumpkinBGMusic.SetTargetVolume(0.1f, 0.01f);
+        yield return null;
     }
 
     private void IncreaseBackgroundMusic()

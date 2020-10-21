@@ -64,6 +64,8 @@ public class BounceRandom : MonoBehaviour
     {
         minSpeed = _minSpeed;
         maxSpeed = _maxSpeed;
+        movingUp = !movingUp;
+        GetNewTargetY();
     }
 
 }
