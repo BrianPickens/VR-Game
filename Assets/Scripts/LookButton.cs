@@ -22,6 +22,11 @@ public class LookButton : LookTarget
     [SerializeField]
     protected float SoundFadeSpeed = 1f;
 
+    [SerializeField]
+    protected bool RandomAudioStart = false;
+
+    private bool musicStarted = false;
+
     private bool buttonPressed = false;
 
     private IEnumerator soundRoutine = null;
@@ -29,6 +34,13 @@ public class LookButton : LookTarget
     protected override void Awake()
     {
         base.Awake();
+        if (RandomAudioStart)
+        {
+            if (SoundClip != null)
+            {
+                myAudioSource.time = UnityEngine.Random.Range(0, SoundClip.length);
+            }
+        }
         myAudioSource.Play();
     }
 
@@ -44,10 +56,26 @@ public class LookButton : LookTarget
             if (isLookedAt)
             {
                 FillImage.fillAmount = Mathf.MoveTowards(FillImage.fillAmount, 1f, FillSpeed * Time.deltaTime);
+                if (SoundClip != null && !musicStarted)
+                {
+                    if (!myAudioSource.isPlaying)
+                    {
+                        myAudioSource.Play();
+                    }
+
+                    if (soundRoutine != null)
+                    {
+                        StopCoroutine(soundRoutine);
+                    }
+                    musicStarted = true;
+                    soundRoutine = SoundRoutine(true);
+                    StartCoroutine(soundRoutine);
+                }
             }
             else
             {
                 FillImage.fillAmount = Mathf.MoveTowards(FillImage.fillAmount, 0f, FillSpeed * Time.deltaTime);
+
             }
 
             if (FillImage.fillAmount >= 0.99f)
@@ -71,33 +99,20 @@ public class LookButton : LookTarget
     protected override void StartLookResponse()
     {
         base.StartLookResponse();
-        if (SoundClip != null && isPressable)
-        {
-            if (!myAudioSource.isPlaying)
-            {
-                myAudioSource.Play();
-            }
-
-            if (soundRoutine != null)
-            {
-                StopCoroutine(soundRoutine);
-            }
-            soundRoutine = SoundRoutine(true);
-            StartCoroutine(soundRoutine);
-        }
     }
 
 
     protected override void EndLookResponse()
     {
         base.EndLookResponse();
-        if (SoundClip != null)
+        if (SoundClip != null && musicStarted)
         {
             if (soundRoutine != null)
             {
                 StopCoroutine(soundRoutine);
             }
             soundRoutine = SoundRoutine(false);
+            musicStarted = false;
             StartCoroutine(soundRoutine);
         }
     }

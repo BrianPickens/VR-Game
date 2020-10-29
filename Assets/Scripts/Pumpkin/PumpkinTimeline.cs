@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PumpkinTimeline : MonoBehaviour
 {
+    [SerializeField] private GameObject reticle = null;
     [SerializeField] private LookTargeting targeting = null;
     [SerializeField] private CameraBlackOut blackOut = null;
     [SerializeField] private Lighting playerLight = null;
@@ -31,6 +32,8 @@ public class PumpkinTimeline : MonoBehaviour
     [Header("Animators")]
     [SerializeField] private Animator lockCoverAnimator = null;
     [SerializeField] private Animator chestAnimator = null;
+    [SerializeField] private Animator pumpkinMan = null;
+    [SerializeField] private Animator pumpkinManHolderAnim = null;
 
     [Header("Objects")]
     [SerializeField] private GameObject rightFlameThrower = null;
@@ -50,6 +53,8 @@ public class PumpkinTimeline : MonoBehaviour
 
     [SerializeField] private Lighting rightLight = null;
     [SerializeField] private Lighting leftLight = null;
+
+    [SerializeField] private PumpkinEnd pumpkinEndTrigger = null;
 
     [Header("Sound Sources")]
     [SerializeField] private SoundSource backgroundMusic = null;
@@ -85,13 +90,17 @@ public class PumpkinTimeline : MonoBehaviour
     [SerializeField] private SoundSource chestOpenAll = null;
     [SerializeField] private SoundSource creepyPumpkinBGMusic = null;
 
+    [Header("LittlePumpkins")]
+    [SerializeField] private List<LittlePumpkin> littlePumpkins = new List<LittlePumpkin>();
+
     private int triggerCount = 0;
 
     private void Start()
     {
         targeting.DisableTargeting();
-        blackOut.FadeOutBlocker(ShowInteractionTutorial);
-        backgroundMusic.SetTargetVolume(0.01f, 10f);
+        blackOut.FadeOutBlocker(StartTutorialDelay);
+        backgroundMusic.SetTargetVolume(0.01f, 0.001f);
+
     }
 
     private void ShowInteractionTutorial()
@@ -108,6 +117,19 @@ public class PumpkinTimeline : MonoBehaviour
     private void RunStory()
     {
         StartCoroutine(RevealCandlesTriggers());
+    }
+
+
+    private void StartTutorialDelay()
+    {
+        StartCoroutine(DelayToShowTutorial());
+    }
+
+    private IEnumerator DelayToShowTutorial()
+    {
+        yield return new WaitForSeconds(2f);
+        ShowInteractionTutorial();
+
     }
 
     private IEnumerator RevealCandlesTriggers()
@@ -195,6 +217,7 @@ public class PumpkinTimeline : MonoBehaviour
         targeting.EnableTargeting();
 
     }
+
     private IEnumerator RevealLockTriggers()
     {
         targeting.DisableTargeting();
@@ -223,7 +246,7 @@ public class PumpkinTimeline : MonoBehaviour
         topLockButton.AddCallback(IncreaseHeartBeatPitch);
         topLockButton.AddCallback(() =>
         {
-            topLockUnLock.PlayAudioWithDelay(0.25f);
+            topLockUnLock.PlayAudioWithDelay(0.3f);
         });
         yield return new WaitForSeconds(1f);
         middleLockButton.InitializeButton(ObjectTriggered);
@@ -232,7 +255,7 @@ public class PumpkinTimeline : MonoBehaviour
         middleLockButton.AddCallback(IncreaseHeartBeatPitch);
         middleLockButton.AddCallback(() =>
         {
-            middleLockUnlock.PlayAudioWithDelay(0.25f);
+            middleLockUnlock.PlayAudioWithDelay(0.3f);
         });
         yield return new WaitForSeconds(1f);
         bottomLockButton.InitializeButton(ObjectTriggered);
@@ -241,7 +264,7 @@ public class PumpkinTimeline : MonoBehaviour
         bottomLockButton.AddCallback(IncreaseHeartBeatPitch);
         bottomLockButton.AddCallback(() =>
         {
-            bottomLockUnlock.PlayAudioWithDelay(0.25f);
+            bottomLockUnlock.PlayAudioWithDelay(0.3f);
         });
         targeting.EnableTargeting();
     }
@@ -319,8 +342,21 @@ public class PumpkinTimeline : MonoBehaviour
         yield return new WaitForSeconds(1f);
         backgroundMusic.PlayAudio();
         backgroundMusic.SetTargetVolume(0.4f, 0.005f);
+
         //play pumpkin stand and step forward animation
-        //star making smaller pumpkins appear and walk in
+        pumpkinMan.SetTrigger("Stand");
+        yield return new WaitForSeconds(4f);
+        pumpkinManHolderAnim.SetTrigger("Event2");
+        pumpkinMan.SetTrigger("Walk1");
+        yield return new WaitForSeconds(4f);
+        pumpkinMan.SetTrigger("Idle");
+
+        //star making smaller pumpkins appear and walk in from all over
+        for (int i = 0; i < littlePumpkins.Count; i++)
+        {
+            littlePumpkins[i].gameObject.SetActive(true);
+            yield return new WaitForSeconds(1f);
+        }
 
         yield return new WaitForSeconds(10f);
 
@@ -329,7 +365,7 @@ public class PumpkinTimeline : MonoBehaviour
         candleLeftButtonSecond.AddCallback(() =>
         {
             backgroundMusic.ChangeVolumeByAmount(musicVolumeChange, 0.25f);
-            playerLight.ChangeLightRangeByAmount(5f, 10f);
+            playerLight.ChangeLightRangeByAmount(2f, 10f);
             candleLeftStartAudio.PlayAudio();
             leftLight.SetLightRange(10f, 25f);
             leftLigthBounce.SetSpeeds(0.1f, 0.2f);
@@ -344,7 +380,7 @@ public class PumpkinTimeline : MonoBehaviour
         candleRightButtonSecond.AddCallback(() =>
         {
             backgroundMusic.ChangeVolumeByAmount(musicVolumeChange, 0.25f);
-            playerLight.ChangeLightRangeByAmount(5f, 10f);
+            playerLight.ChangeLightRangeByAmount(2f, 10f);
             candleRightStartAudio.PlayAudio();
             rightLight.SetLightRange(10f, 25f);
             rightLightBounce.SetSpeeds(0.1f, 0.2f);
@@ -358,8 +394,39 @@ public class PumpkinTimeline : MonoBehaviour
 
     private IEnumerator RevealPumpkins()
     {
+        reticle.SetActive(false);
         creepyPumpkinBGMusic.SetTargetVolume(0.1f, 0.01f);
-        yield return null;
+
+        //give player time to look at pumpkins
+        yield return new WaitForSeconds(10f);
+
+        AllowPumpkinScare();
+    }
+
+    private void AllowPumpkinScare()
+    {
+        pumpkinEndTrigger.gameObject.SetActive(true);
+    }
+
+    public void PlayPumpkinScare()
+    {
+        StartCoroutine(StartEndOfExperience());
+    }
+
+    private IEnumerator StartEndOfExperience()
+    {
+        //move big pumpkin quickly toward player
+        scaryEscapeSound.PlayAudio();
+        pumpkinMan.SetTrigger("Lunge");
+        yield return new WaitForSeconds(0.55f);
+        blackOut.FadeInBlocker(null, 100);
+        creepyPumpkinBGMusic.SetTargetVolume(0f, 1f);
+        backgroundMusic.SetTargetVolume(0f, 2f);
+        candleLeftAudio.SetTargetVolume(0f, 1f);
+        candleRightAudio.SetTargetVolume(0f, 1f);
+        yield return new WaitForSeconds(5f);
+        SceneLoader.Instance.LoadScene("EndScreenPumpkin");
+
     }
 
     private void IncreaseBackgroundMusic()
